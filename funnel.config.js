@@ -6,7 +6,7 @@ window.FUNNEL_CONFIG = {
   offer: {
     name: 'Northstar Launch Lab', // used in the lead data and the page's price labels
     price: 497,                    // what buyers pay today
-    compareAt: 997,                // the normal price, shown struck through
+    compareAt: 997,                // the normal price, shown struck through; leave it out if there is no discount (no discount is shown then)
     currency: 'USD'                // ISO code: USD, EUR, GBP, AUD...
   },
 
@@ -20,7 +20,7 @@ window.FUNNEL_CONFIG = {
   leads: {
     webhooks: [],                   // every lead from step 1 is posted to each URL here (Zapier, Make, n8n, GoHighLevel, your own)
     phone: true,                    // show and require the phone field
-    consentCheckbox: false          // show a required "email me about this offer" checkbox
+    consentCheckbox: false          // show an optional "email me about this offer" checkbox; the lead's consent field says yes or no
   },
 
   checkout: {

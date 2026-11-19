@@ -52,8 +52,8 @@ WHAT THE TEMPLATE CAN DO (so you only offer what is real)
   (paid fonts, not included) with free fallbacks (Geist, Instrument Serif).
 - Checkout (docs/CHECKOUTS.md):
   - embedded on the page: Whop (plan ID only), or any provider that gives embed code (ThriveCart, SamCart, ...);
-  - opened as a link with the email prefilled: Stripe Payment Links, GoHighLevel payment links, Shopify
-    and other checkout URLs.
+  - opened as a link: Stripe Payment Links and GoHighLevel payment links (email prefilled), Shopify and
+    any other checkout URL (prefilled only if that platform supports URL parameters).
   - One price is shown. Payment plans and subscriptions are set up in the checkout provider.
 - Leads (docs/LEADS.md):
   - Step-1 leads are posted to any webhook URLs, before payment, so they can be followed up as
@@ -138,7 +138,7 @@ Show only graphics for things I actually sell, and keep their style, size and pl
 
 The graphics in assets/graphics/ show a made-up brand ("Northstar"), so none may stay as they are.
 For each graphic I need, choose one with me:
-- tailor it in the editable Figma templates (docs/GRAPHICS.md) and export at 2x;
+- if docs/GRAPHICS.md links the editable Figma templates, tailor it there and export at 2x;
 - replace it with my own screenshot (best proof, if I have one);
 - remove it.
 

@@ -8,7 +8,7 @@ A free, ready-to-sell template for a mid-ticket offer: a long-form sales page wi
 
 ## What it does
 
-- **Two-step checkout on the page.** Step 1 takes name, email and phone (with a country picker). Step 2 shows your checkout right below it. Visitors never leave the page, and the page never jumps.
+- **Two-step checkout on the page.** Step 1 takes name, email and phone (with a country picker). Step 2 shows your checkout right below it, and the page never jumps. With an embedded checkout (Whop, ThriveCart, SamCart and others), visitors never leave the page. With a checkout link (Stripe Payment Links and others), they go to the provider's page with their email filled in.
 - **Leads go anywhere.** Every step-1 lead is posted to any webhook you list: Zapier, Make, n8n, a Google Sheet or your own server. GoHighLevel and other CRMs connect through one of those. It happens before payment, so you can follow up on abandoned checkouts.
 - **Bring your own checkout.**
   - **Whop:** paste your plan ID.

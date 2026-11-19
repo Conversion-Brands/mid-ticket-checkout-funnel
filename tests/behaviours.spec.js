@@ -122,3 +122,15 @@ test('a video with no embed does nothing on click', async ({ page }) => {
   await expect(page.locator('[data-funnel-video] .mtf-video-poster')).toHaveCount(1);
   expect(errors).toEqual([]);
 });
+
+test('a loaded video gets its keyboard back', async ({ page }) => {
+  await rewritePage(page, '/index.html', html => html.replace(/(<div class="mtf-video" data-funnel-video[^>]*>[\s\S]*?<template>)[\s\S]*?(<\/template>)/, '$1<input id="vi" aria-label="player search">$2'));
+  await page.goto('/index.html');
+  await page.locator('[data-funnel-video]').click();
+  await page.locator('#vi').fill('');
+  await page.locator('#vi').press('a');
+  await page.locator('#vi').press(' ');
+  await page.locator('#vi').press('b');
+  await expect(page.locator('#vi')).toHaveValue('a b');
+  await expect(page.locator('[data-funnel-video]')).not.toHaveAttribute('role', 'button');
+});

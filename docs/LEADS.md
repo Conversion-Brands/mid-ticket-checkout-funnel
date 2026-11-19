@@ -27,6 +27,7 @@ One `POST` with a form-encoded body (`application/x-www-form-urlencoded`), the s
 | `page_url` | the page the lead came from |
 | `referrer` | the site that sent the visitor, if the browser shares it |
 | `submitted_at` | 2026-11-19T17:42:03.120Z (UTC) |
+| `consent` | `yes` or `no` when the optional consent box is switched on (`leads.consentCheckbox`), otherwise empty |
 
 Good to know:
 - **No confirmation is visible.** The page sends the lead the simple way (no CORS preflight), so it can post to any service. The browser can't read the reply, so the page only notices when a URL can't be reached at all (a console warning). **Always send one test lead and check it arrives.**

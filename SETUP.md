@@ -53,7 +53,7 @@ Ask in small groups. Wait for the answers before moving on, and write down exact
 9. **Leads**:
    - which webhook URLs leads should go to (see `docs/LEADS.md`);
    - whether to ask for a phone number;
-   - whether to show a consent checkbox (suggest yes for audiences in the EU or UK).
+   - whether to show a consent checkbox (suggest yes for audiences in the EU or UK). It is optional for the buyer: the checkout never depends on it, and each lead's `consent` field says `yes` or `no`.
 10. **Checkout**: the provider, plus the plan ID, link or embed code (see `docs/CHECKOUTS.md`).
 11. **Welcome page**:
     - the three next steps, with links (community, course login, calendar for calls);
@@ -101,6 +101,8 @@ Ask in small groups. Wait for the answers before moving on, and write down exact
 | Where a failed payment returns to | the small script in the `<head>` of `welcome.html` (only if the sales page is not `index.html`) |
 
 Prices in the copy use `<span data-funnel-price="price">`, `"compare-at"`, `"savings"` or `"savings-percent"`. Never type a price into the copy.
+
+**No discount?** Leave `offer.compareAt` out. Every normal price, saving and element marked `data-funnel-discount` (the "Normally $997" lines, "50% off" labels) then hides by itself. Mark any discount wording you add the same way, and remove sale words such as "Black Friday" if it isn't a sale.
 
 ## 4. What each section is for
 
@@ -218,7 +220,7 @@ Ask the owner which one they want:
 - [ ] One real purchase works end to end and lands on the welcome page with the buyer's first name. Then refund it.
 - [ ] A failed or cancelled payment comes back to the checkout with the notice (if the provider supports it).
 - [ ] Both pages are checked on a phone (390px wide) and on desktop.
-- [ ] The privacy policy, terms and disclaimers are the owner's real texts, and the links work.
+- [ ] The privacy policy, terms and disclaimers are the owner's real texts, and the links work. (Their placeholder links are tagged, so the badge counts them.)
 - [ ] Tracking is set up if the owner wants it (see `docs/DEPLOY.md`).
 - [ ] The favicon (`assets/favicon.svg`) and the page `<title>` and description are the owner's.
 

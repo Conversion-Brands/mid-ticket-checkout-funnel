@@ -21,7 +21,7 @@
 <body>
 
 <div class="mtf-announcement" id="top" data-funnel-section="announcement" data-funnel-sale>
-  <p class="mtf-label mtf-is-inverse"><svg class="mtf-icon mtf-is-inverse mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> Black Friday sale: <span data-funnel-price="savings-percent">50%</span> off</p>
+  <p class="mtf-label mtf-is-inverse"><svg class="mtf-icon mtf-is-inverse mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> Black Friday sale<span data-funnel-discount>: <span data-funnel-price="savings-percent">50%</span> off</span></p>
   <div class="mtf-announcement-prices">
     <p class="mtf-timer mtf-is-inverse"><s data-funnel-price="compare-at">$997</s></p>
     <p class="mtf-timer mtf-is-bold mtf-is-inverse" data-funnel-price="price">$497</p>
@@ -54,7 +54,7 @@
     <div class="mtf-cta">
       <a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale>
         <div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg mtf-is-v2">Claim My Black Friday Offer Now</div></div>
-        <div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
+        <div class="mtf-button-sublabel mtf-is-lg" data-funnel-discount>Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
       </a>
       <div class="mtf-social-proof" data-sample>
         <img class="mtf-social-proof-avatars" src="assets/placeholders/avatars.svg" width="53" height="21" alt="">
@@ -72,10 +72,10 @@
         <img class="mtf-logo" src="assets/placeholders/logo.svg" width="110" height="45" alt="Your brand" data-sample>
         <div class="mtf-checkout-title">
           <h2 class="mtf-heading-h5 mtf-is-underline">Here&rsquo;s Everything You Get Today:</h2>
-          <h3 class="mtf-heading-h3">The Northstar Launch Lab<br><span class="mtf-span-italic">Black Friday Bundle</span> - <span class="mtf-span-color"><span data-funnel-price="savings-percent">50%</span> Off</span></h3>
+          <h3 class="mtf-heading-h3">The Northstar Launch Lab<br><span class="mtf-span-italic">Black Friday Bundle</span><span data-funnel-discount> - <span class="mtf-span-color"><span data-funnel-price="savings-percent">50%</span> Off</span></span></h3>
           <p class="mtf-text-md mtf-is-secondary mtf-in-checkout-title">Get the full program, weekly coaching calls, the private community and three bonuses. (Black Friday only)</p>
         </div>
-        <img class="mtf-mockup mtf-is-graphic" src="assets/graphics/course-portal-devices.webp" width="495" height="297" alt="The course portal on laptop, tablet and phone" data-sample>
+        <img class="mtf-mockup mtf-is-graphic" src="assets/graphics/offer-bundle.webp" width="495" height="297" alt="Everything in the bundle: the course on laptop, tablet and phone, the weekly coaching calls and three bonuses" data-sample>
         <div class="mtf-access">
           <p class="mtf-label-sm">Join now and get instant access to:</p>
           <div class="mtf-access-columns">
@@ -117,8 +117,7 @@
             <p class="mtf-field-error" data-funnel-error="email" hidden></p>
             <div class="mtf-input mtf-is-phone" data-funnel-phone><input class="mtf-input-field" type="tel" name="phone" id="mtf-phone" placeholder="Phone number" autocomplete="tel" aria-label="Phone number"></div>
             <p class="mtf-field-error" data-funnel-error="phone" hidden></p>
-            <label class="mtf-consent" data-funnel-consent hidden><input class="mtf-consent-box" type="checkbox" name="consent"><span>Yes, email me about this offer. You can unsubscribe at any time. See our <a href="#">privacy policy</a>.</span></label>
-            <p class="mtf-field-error" data-funnel-error="consent" hidden></p>
+            <label class="mtf-consent" data-funnel-consent hidden><input class="mtf-consent-box" type="checkbox" name="consent"><span>Yes, email me about this offer. You can unsubscribe at any time. See our <a href="#" data-sample>privacy policy</a>.</span></label>
           </form>
           <div class="mtf-checkout-total">
             <p class="mtf-text-lg mtf-is-medium">Total Payment:</p>
@@ -137,7 +136,7 @@
           </div>
         </div>
 
-        <div class="mtf-checkout-step" data-funnel-step="payment" hidden>
+        <div class="mtf-checkout-step" data-funnel-step="payment" tabindex="-1" hidden>
           <div class="mtf-pay-summary"><span class="mtf-pay-summary-text" data-funnel-summary></span><button type="button" class="mtf-pay-edit" data-funnel-edit>Edit details</button></div>
           <div class="mtf-pay-embed" data-funnel-pay></div>
           <div class="mtf-pay-missing" data-funnel-checkout-missing hidden>
@@ -155,7 +154,7 @@
       <div class="mtf-countdown" data-funnel-countdown-wrap>
         <div class="mtf-countdown-12gap">
           <svg class="mtf-icon mtf-is-inverse mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <p class="mtf-countdown-label"><span data-funnel-price="savings-percent">50%</span> off <span class="mtf-span-color mtf-is-on-dark">Black Friday deal</span> ending in:</p>
+          <p class="mtf-countdown-label"><span data-funnel-discount><span data-funnel-price="savings-percent">50%</span> off </span><span class="mtf-span-color mtf-is-on-dark">Black Friday deal</span> ending in:</p>
         </div>
         <p class="mtf-countdown-timer" data-funnel-countdown>00D:00H:00M:00S</p>
       </div>
@@ -259,7 +258,7 @@
         </div>
       </div>
     </div>
-    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim My Black Friday Offer Now</div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim My Black Friday Offer Now</div></div><div class="mtf-button-sublabel mtf-is-lg" data-funnel-discount>Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
     <p class="mtf-text-sm mtf-is-secondary mtf-in-container">That is the whole model. The Lab teaches you each step: how to shape the offer, what to put in each lesson, and how to launch to a small audience before you build a bigger one.</p>
   </div>
 </section>
@@ -272,7 +271,7 @@
       <div class="mtf-section-header mtf-is-included">
         <div class="mtf-countdown-pill" data-funnel-countdown-wrap>
           <svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <p class="mtf-countdown-pill-label mtf-in-section-header"><span data-funnel-price="savings-percent">50%</span> off ending in:</p>
+          <p class="mtf-countdown-pill-label mtf-in-section-header">Black Friday deal<span data-funnel-discount> (<span data-funnel-price="savings-percent">50%</span> off)</span> ending in:</p>
           <p class="mtf-countdown-pill-old-price" data-funnel-countdown>00D:00H:00M:00S</p>
         </div>
         <h2 class="mtf-heading-h2">Here&rsquo;s what you&rsquo;re getting <span class="mtf-span-italic-underline">this Black Friday:</span></h2>
@@ -335,7 +334,7 @@
             <h3 class="mtf-heading-h4 mtf-is-italic">Only <span class="mtf-span-color" data-funnel-price="price">$497</span> for Black Friday</h3>
           </div>
         </div>
-        <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+        <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg" data-funnel-discount>Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
       </div>
     </div>
   </div>
@@ -384,11 +383,11 @@
           <p class="mtf-text-sm mtf-is-tertiary">Alex Morgan, founder of Northstar Launch Lab</p>
         </div>
         <div class="mtf-letter-ps">
-          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium-color">P.S.</span> The Black Friday price is <span data-funnel-price="savings-percent">50%</span> off until the timer runs out. When it runs out, this offer closes.</p>
+          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium-color">P.S.</span> The Black Friday price<span data-funnel-discount> (<span data-funnel-price="savings-percent">50%</span> off)</span> lasts until the timer runs out. When it runs out, this offer closes.</p>
           <div class="mtf-cta mtf-is-inline">
             <a href="#checkout" class="mtf-button mtf-in-cta" data-funnel-sale>
               <div class="mtf-button-label">Claim Full Access Now</div>
-              <div class="mtf-button-sublabel">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
+              <div class="mtf-button-sublabel" data-funnel-discount>Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
             </a>
             <div class="mtf-cta-meta">
               <p class="mtf-text-sm mtf-is-tertiary mtf-in-cta-meta">Instant access after checkout</p>
@@ -416,7 +415,7 @@
           <p class="mtf-timer mtf-is-accent" data-funnel-countdown>00D:00H:00M:00S</p>
         </div>
         <h2 class="mtf-heading-h3 mtf-in-offer-bundle">The Northstar Launch Lab Black Friday Bundle</h2>
-        <img class="mtf-mockup mtf-is-graphic" src="assets/graphics/course-portal-devices.webp" width="496" height="297" alt="The course portal on laptop, tablet and phone" data-sample>
+        <img class="mtf-mockup mtf-is-graphic" src="assets/graphics/offer-bundle.webp" width="496" height="297" alt="Everything in the bundle: the course on laptop, tablet and phone, the weekly coaching calls and three bonuses" data-sample>
         <img class="mtf-offer-badge" src="assets/placeholders/sticker.svg" width="89" height="92" alt="Black Friday sale" data-funnel-sale data-sample>
         <div class="mtf-testimonial-card mtf-in-offer-bundle" data-sample>
           <div class="mtf-testimonial-card-author">
@@ -450,7 +449,7 @@
             <div class="mtf-value-total-row">
               <div class="mtf-value-total-label">
                 <p class="mtf-text-lg mtf-is-medium">Total price:</p>
-                <div class="mtf-tag mtf-is-dark"><div class="mtf-tag-label mtf-is-dark">Black Friday: <span data-funnel-price="savings-percent">50%</span> Off</div></div>
+                <div class="mtf-tag mtf-is-dark" data-funnel-discount><div class="mtf-tag-label mtf-is-dark">Black Friday: <span data-funnel-price="savings-percent">50%</span> Off</div></div>
               </div>
               <div class="mtf-price mtf-in-value-total-row">
                 <p class="mtf-heading-h3 mtf-is-tertiary"><s data-funnel-price="compare-at">$997</s></p>
@@ -460,7 +459,7 @@
           </div>
           <a href="#checkout" class="mtf-button mtf-is-offer" data-funnel-sale>
             <div class="mtf-button-label mtf-is-bold mtf-in-offer-summary">Claim My Black Friday Offer Now</div>
-            <div class="mtf-button-sublabel">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
+            <div class="mtf-button-sublabel" data-funnel-discount>Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
           </a>
         </div>
         <div class="mtf-trust">
@@ -505,7 +504,7 @@
         <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">How do I get help?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>Email us at hello@example.com and we will get back to you within one working day.</p></div>
       </div>
     </div>
-    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg" data-funnel-discount>Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
   </div>
 </section>
 <!-- /faq -->
@@ -532,7 +531,7 @@
     </div>
   </div>
   <div class="mtf-container mtf-is-results">
-    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg" data-funnel-discount>Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
   </div>
 </section>
 <!-- /results -->
@@ -542,8 +541,8 @@
     <div class="mtf-footer-top">
       <img class="mtf-logo mtf-in-footer-top" src="assets/placeholders/logo-inverse.svg" width="224" height="91" alt="Your brand" data-sample>
       <div class="mtf-footer-links">
-        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary">Privacy Policy</a>
-        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary">Terms of Service</a>
+        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary" data-sample>Privacy Policy</a>
+        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary" data-sample>Terms of Service</a>
         <a href="#top" class="mtf-back-to-top"><div class="mtf-text-sm mtf-is-medium mtf-is-inverse">Back to top</div><div class="mtf-icon-button mtf-is-outline"><svg class="mtf-icon mtf-is-inverse mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></div></a>
       </div>
     </div>

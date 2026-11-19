@@ -11,7 +11,7 @@ test('config merges defaults', async ({ page }) => {
   await page.goto('/index.html');
   const cfg = await page.evaluate(() => window.Funnel.config);
   expect(cfg.offer.price).toBe(297);
-  expect(cfg.offer.compareAt).toBe(997);
+  expect(cfg.offer.compareAt).toBe(null); // no default normal price: a discount is shown only when the owner sets one
   expect(cfg.checkout.provider).toBe('none');
   expect(cfg.deadline.afterEnd).toBe('close');
   expect(cfg.checkout.successUrl).toBe('welcome.html');
@@ -99,4 +99,28 @@ test('sampleWarnings false hides the banner', async ({ page }) => {
 test('Funnel.version', async ({ page }) => {
   await page.goto('/index.html');
   expect(await page.evaluate(() => Funnel.version)).toBe('1.0.0');
+});
+
+test('no compareAt means no invented discount', async ({ page }) => {
+  const warnings = [];
+  page.on('console', m => { if (m.type() === 'warning') warnings.push(m.text()); });
+  await rawConfig(page, 'window.FUNNEL_CONFIG = { offer: { price: 297 } };');
+  await page.goto('/index.html');
+  const visible = await page.$$eval('[data-funnel-price="compare-at"], [data-funnel-price="savings"], [data-funnel-price="savings-percent"], [data-funnel-discount]',
+    els => els.filter(e => e.offsetParent !== null || getComputedStyle(e).position === 'fixed' && !e.closest('[hidden]')).filter(e => !e.closest('[hidden]') && e.getClientRects().length).map(e => e.outerHTML.slice(0, 80)));
+  expect(visible).toEqual([]);
+  expect(await page.locator('[data-funnel-price="price"]').first().textContent()).toBe('$297');
+  expect(warnings.some(w => w.includes('offer.compareAt'))).toBe(true);
+});
+
+test('a broken settings file shows a clear notice', async ({ page }) => {
+  await rawConfig(page, "window.FUNNEL_CONFIG = { offer: { price: 297 } checkout: {} };");
+  await page.goto('/index.html');
+  await expect(page.locator('#mtf-config-notice')).toContainText('funnel.config.js');
+});
+
+test('placeholder links are tagged so the badge catches them', async ({ page }) => {
+  await page.goto('/index.html');
+  const untagged = await page.$$eval('a[href="#"]', els => els.filter(a => !a.closest('[data-sample]') && !a.matches('[data-funnel-continue], [data-funnel-ended-link]')).map(a => a.textContent.trim()));
+  expect(untagged).toEqual([]);
 });

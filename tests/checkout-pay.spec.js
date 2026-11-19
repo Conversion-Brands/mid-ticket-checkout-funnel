@@ -206,3 +206,44 @@ test('{last_name} is everything after the first name', async ({ page }) => {
   await page.locator('[data-funnel-continue]').click();
   await expect(page.locator('#ln')).toHaveText('Zoë|van der Berg');
 });
+
+test('a name with an apostrophe or backtick cannot break a single-quoted or template-string embed script', async ({ page }) => {
+  await withConfig(page, { checkout: { provider: 'embed' } });
+  await withEmbed(page, "<script>window.__a = '{name}'; window.__b = `{name}`;</script>");
+  await page.goto('/index.html');
+  await ready(page);
+  await fillLead(page, { name: "Zoë O'Brien ${1+1}`" });
+  await page.locator('[data-funnel-continue]').click();
+  await expect(payment(page)).toBeVisible();
+  expect(await page.evaluate(() => [window.__a, window.__b])).toEqual(["Zoë O'Brien ${1+1}`", "Zoë O'Brien ${1+1}`"]);
+});
+
+test('embed scripts run in order, waiting for external ones to load', async ({ page }) => {
+  await withConfig(page, { checkout: { provider: 'embed' } });
+  await page.route('https://pay.test/sdk.js', async r => { await new Promise(res => setTimeout(res, 300)); r.fulfill({ contentType: 'application/javascript', body: 'window.SDK = { ok: 42 };' }); });
+  await withEmbed(page, '<script src="https://pay.test/sdk.js"></script><script>window.__init = SDK.ok;</script>');
+  await page.goto('/index.html');
+  await toStep2(page);
+  await expect.poll(() => page.evaluate(() => window.__init)).toBe(42);
+});
+
+test('focus moves to step 2, and back to the form after Edit details', async ({ page }) => {
+  await page.goto('/index.html');
+  await toStep2(page);
+  expect(await page.evaluate(() => !!document.activeElement.closest('[data-funnel-step="payment"]'))).toBe(true);
+  await page.locator('[data-funnel-edit]').click();
+  expect(await page.evaluate(() => document.activeElement.id)).toBe('mtf-name');
+});
+
+test('coming back from a link checkout with the Back button shows the form again', async ({ page }) => {
+  await withConfig(page, { checkout: { provider: 'link', link: 'https://pay.test/buy?prefilled_email={email}' } });
+  await page.route('https://pay.test/**', r => r.fulfill({ status: 204 })); // a 204 cancels the navigation, so the page stays
+  await page.goto('/index.html');
+  await ready(page);
+  await fillLead(page);
+  await page.locator('[data-funnel-continue]').click();
+  await expect(payment(page)).toBeVisible();
+  await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true })));
+  await expect(page.locator('[data-funnel-step="details"]')).toBeVisible();
+  await expect(payment(page)).toBeHidden();
+});

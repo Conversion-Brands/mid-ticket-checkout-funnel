@@ -114,3 +114,8 @@ test('Funnel.sampleCount works on the welcome page', async ({ page }) => {
   await page.goto('/welcome.html');
   expect(await page.evaluate(() => window.Funnel.sampleCount())).toBe(await page.locator('[data-sample]').count());
 });
+
+test('welcome placeholder links are tagged', async ({ page }) => {
+  await page.goto('/welcome.html');
+  expect(await page.$$eval('a[href="#"]', els => els.filter(a => !a.closest('[data-sample]')).map(a => a.textContent.trim()))).toEqual([]);
+});

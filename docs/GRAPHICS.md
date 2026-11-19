@@ -4,10 +4,14 @@
 
 ## Which graphic for which deliverable
 
+The bundle shot combines the parts below. When the offer changes, rebuild it from the same parts (it is one frame in the Figma templates), and keep only what the offer really includes.
+
+
 | You sell | Graphic | File (2x) | Where it sits in the template |
 |---|---|---|---|
 | **Online course** | course portal on three devices | `course-portal-laptop.webp` (828x500), `course-portal-tablet.webp` (404x310), `course-portal-phone.webp` (168x350) | "What's included", first card (the three device images) |
-| | course portal, all devices together | `course-portal-devices.webp` (992x462) | the checkout's "everything you get" image, and the offer section |
+| **The whole offer** | the bundle: course devices, coaching call, bonus boxes and handwritten labels in one shot | `offer-bundle.webp` (992x594) | the checkout's "everything you get" image, and the offer section |
+| | course portal, all devices together | `course-portal-devices.webp` (992x462) | spare: use it instead of the bundle when the offer is a course only |
 | | course modules card | `course-modules.webp` (611x462) | welcome step 2 |
 | **Group coaching** or **live workshops** | video call grid | `video-call-grid.webp` (1052x652) | "What's included", coaching card |
 | | group coaching call card | `group-coaching-call.webp` (616x460) | welcome step 3 |
@@ -32,7 +36,7 @@ You have three options:
   - the accent colour;
   - the logo.
 
-  Export each frame at 2x as PNG and save it over the matching file in `assets/graphics/` (WebP or PNG both work; keep the same width).
+  Export each frame at 2x and keep the same width. Save it as the matching file name in `assets/graphics/`. If you save a PNG instead of WebP, change the `src` of that image in the page too.
 - **Use your own screenshots.** A real screenshot of your course platform, community or a call is the strongest proof of all. Crop it to roughly the same shape as the graphic it replaces. Only use screenshots you own, and blur or remove other people's names and faces unless they agreed.
 - **Remove it.** Delete the image, or the whole card if the deliverable isn't in your offer.
 

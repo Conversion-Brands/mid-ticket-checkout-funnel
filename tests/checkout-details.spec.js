@@ -4,7 +4,7 @@ const { withConfig, catchWebhooks, rewritePage, fillLead } = require('./helpers'
 
 test.use({ locale: 'en-US' });
 const HOOKS = ['https://hooks.test/a', 'https://hooks.test/b'];
-const KEYS = ['name', 'first_name', 'email', 'phone', 'country', 'offer', 'price', 'currency', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'session_id', 'page_url', 'referrer', 'submitted_at'];
+const KEYS = ['name', 'first_name', 'email', 'phone', 'country', 'offer', 'price', 'currency', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'session_id', 'page_url', 'referrer', 'submitted_at', 'consent'];
 const payment = page => page.locator('[data-funnel-step="payment"]');
 const cont = page => page.locator('[data-funnel-continue]');
 async function ready(page) { await page.waitForFunction(() => document.querySelector('.iti__selected-country') && window.intlTelInput && window.intlTelInput.utils); }
@@ -42,18 +42,29 @@ test('an error clears when the field is edited', async ({ page }) => {
   await expect(page.locator('[data-funnel-error="name"]')).toBeHidden();
 });
 
-test('consent box must be ticked when it is switched on', async ({ page }) => {
-  await withConfig(page, { leads: { consentCheckbox: true } });
+test('the consent box is optional and recorded in the lead', async ({ page }) => {
+  await withConfig(page, { leads: { consentCheckbox: true, webhooks: ['https://hooks.test/a'] } });
+  const hooks = await catchWebhooks(page);
   await page.goto('/index.html');
   await ready(page);
   await expect(page.locator('[data-funnel-consent]')).toBeVisible();
   await fillLead(page);
   await cont(page).click();
-  await expect(page.locator('[data-funnel-error="consent"]')).toHaveText('Please tick the box to continue');
-  await expect(payment(page)).toBeHidden();
+  await expect(payment(page)).toBeVisible();
+  await expect.poll(() => hooks.length).toBe(1);
+  expect(new URLSearchParams(hooks[0].body).get('consent')).toBe('no');
+});
+
+test('a ticked consent box is sent as yes', async ({ page }) => {
+  await withConfig(page, { leads: { consentCheckbox: true, webhooks: ['https://hooks.test/a'] } });
+  const hooks = await catchWebhooks(page);
+  await page.goto('/index.html');
+  await ready(page);
+  await fillLead(page);
   await page.check('input[name="consent"]');
   await cont(page).click();
-  await expect(payment(page)).toBeVisible();
+  await expect.poll(() => hooks.length).toBe(1);
+  expect(new URLSearchParams(hooks[0].body).get('consent')).toBe('yes');
 });
 
 test('phone off hides the field and does not require it', async ({ page }) => {

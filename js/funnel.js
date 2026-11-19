@@ -10,7 +10,7 @@
 
   var VERSION = '1.0.0';
   var DEFAULTS = {
-    offer: { name: 'Your Program', price: 497, compareAt: 997, currency: 'USD' },
+    offer: { name: 'Your Program', price: 497, compareAt: null, currency: 'USD' }, // compareAt: the normal price; leave it out when there is no discount
     deadline: { endsAt: null, afterEnd: 'close', endedLink: '' },
     leads: { webhooks: [], phone: true, consentCheckbox: false },
     checkout: { provider: 'none', whopPlan: '', whopAccent: 'gray', link: '', embedHtml: '', successUrl: 'welcome.html' },
@@ -44,7 +44,8 @@
   function warn(msg) { if (window.console) console.warn('Mid-ticket Checkout Funnel: ' + msg); }
 
   // ---------------------------------------------------------------- settings
-  var cfg = merge(DEFAULTS, isObject(window.FUNNEL_CONFIG) ? window.FUNNEL_CONFIG : {});
+  var configOk = isObject(window.FUNNEL_CONFIG);
+  var cfg = merge(DEFAULTS, configOk ? window.FUNNEL_CONFIG : {});
   var hooks = cfg.leads.webhooks;
   if (typeof hooks === 'string') hooks = [hooks];
   cfg.leads.webhooks = (Array.isArray(hooks) ? hooks : []).filter(function (u) { return typeof u === 'string' && u.trim(); }).map(function (u) { return u.trim(); });
@@ -54,6 +55,14 @@
     version: VERSION,
     config: cfg
   };
+  if (!configOk) { // a typo in funnel.config.js (or a missing file) must not go unnoticed
+    if (window.console) console.error('Mid-ticket Checkout Funnel: funnel.config.js could not be read, so the default settings are used. Look for a typo such as a missing comma, quote or bracket.');
+    var cn = document.createElement('div');
+    cn.id = 'mtf-config-notice';
+    cn.setAttribute('role', 'alert');
+    cn.textContent = 'The settings file (funnel.config.js) could not be read, so this page uses the default settings. Check it for a typo, such as a missing comma, quote or bracket.';
+    document.body.appendChild(cn);
+  }
 
   // ---------------------------------------------------------------- prices
   Funnel.formatPrice = function (amount, currency) {
@@ -66,7 +75,14 @@
   };
   (function prices() {
     var o = cfg.offer;
-    var savings = Math.max(0, o.compareAt - o.price);
+    var hasDiscount = typeof o.compareAt === 'number' && o.compareAt > o.price;
+    if (!hasDiscount) { // never show a normal price or a discount that is not real
+      warn(o.compareAt == null
+        ? 'offer.compareAt is not set, so no normal price or discount is shown. Remove any discount wording from the copy too.'
+        : 'offer.compareAt (' + o.compareAt + ') is not above offer.price, so no discount is shown.');
+      $$('[data-funnel-price="compare-at"], [data-funnel-price="savings"], [data-funnel-price="savings-percent"], [data-funnel-discount]').forEach(hide);
+    }
+    var savings = hasDiscount ? o.compareAt - o.price : 0;
     var values = {
       'price': Funnel.formatPrice(o.price, o.currency),
       'compare-at': Funnel.formatPrice(o.compareAt, o.currency),
@@ -196,6 +212,7 @@
     p.append('page_url', location.href);
     p.append('referrer', document.referrer || '');
     p.append('submitted_at', new Date().toISOString());
+    p.append('consent', lead.consent || '');
     return p;
   };
   // Fire and forget: a simple form-encoded request (no CORS preflight) to every webhook. Never awaited.
@@ -260,7 +277,6 @@
       ['name', name, name && name.value.trim(), 'Please enter your name'],
       ['email', email, email && EMAIL.test(email.value.trim()), 'Please enter a valid email address'],
       ['phone', phone, !phone || phoneValid(), 'Please enter a valid phone number'],
-      ['consent', field('consent'), !cfg.leads.consentCheckbox || (field('consent') && field('consent').checked), 'Please tick the box to continue']
     ];
     checks.forEach(function (c) {
       setError(c[0], c[2] ? '' : c[3], c[1]);
@@ -270,9 +286,9 @@
     return !first;
   }
   if (form) {
-    ['name', 'email', 'consent'].forEach(function (k) {
+    ['name', 'email'].forEach(function (k) {
       var el = field(k);
-      if (el) el.addEventListener(k === 'consent' ? 'change' : 'input', function () { setError(k, '', el); });
+      if (el) el.addEventListener('input', function () { setError(k, '', el); });
     });
     if (phone) ['input', 'countrychange'].forEach(function (ev) { phone.addEventListener(ev, function () { setError('phone', '', phone); }); });
   }
@@ -300,7 +316,9 @@
         if (!full) { var dial = (iti.getSelectedCountryData() || {}).dialCode; full = (dial ? '+' + dial : '') + phone.value.replace(/\D/g, ''); }
       } else full = phone.value.trim();
     }
-    return { name: name, first_name: Funnel.firstName(name), last_name: name.split(/\s+/).slice(1).join(' '), email: email, phone: full, country: country };
+    var box = field('consent');
+    var consentValue = cfg.leads.consentCheckbox ? (box && box.checked ? 'yes' : 'no') : ''; // optional: buying never depends on it
+    return { name: name, first_name: Funnel.firstName(name), last_name: name.split(/\s+/).slice(1).join(' '), email: email, phone: full, country: country, consent: consentValue };
   }
   function submitDetails(e) {
     if (e) { e.preventDefault(); e.stopPropagation(); }
@@ -310,7 +328,7 @@
     var lead = readLead();
     var webflowForm = form.closest('.w-form');
     if (webflowForm) { // Webflow stores the lead and runs its own form integrations
-      Funnel.leadPayload(lead).forEach(function (v, k) { if (['name', 'email', 'phone'].indexOf(k) === -1) setHidden(k, v); });
+      Funnel.leadPayload(lead).forEach(function (v, k) { if (['name', 'email', 'phone', 'consent'].indexOf(k) === -1) setHidden(k, v); });
       if (phone && lead.phone) phone.value = lead.phone;
       if (form.requestSubmit) form.requestSubmit(); else form.submit();
       if (iti && lead.phone) iti.setNumber(lead.phone); // show the national format again
@@ -410,7 +428,10 @@
   }
   function jsEscape(lead) {
     var out = {};
-    Object.keys(lead).forEach(function (k) { out[k] = JSON.stringify(String(lead[k] == null ? '' : lead[k])).slice(1, -1).replace(/<\//g, '<\\/'); });
+    Object.keys(lead).forEach(function (k) {
+      out[k] = JSON.stringify(String(lead[k] == null ? '' : lead[k])).slice(1, -1) // safe in "double", 'single' and `template` strings
+        .replace(/'/g, '\\u0027').replace(/`/g, '\\u0060').replace(/\$/g, '\\u0024').replace(/<\//g, '<\\/');
+    });
     return out;
   }
   function fillNode(node, lead) {
@@ -435,20 +456,33 @@
     tpl.innerHTML = src;
     var frag = tpl.content;
     Array.prototype.forEach.call(frag.childNodes, function (c) { fillNode(c, lead); });
+    var scripts = [];
     Array.prototype.forEach.call(frag.querySelectorAll('script'), function (old) {
-      var s = document.createElement('script');
-      Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
-      s.textContent = old.textContent;
-      old.parentNode.replaceChild(s, old); // a new script element runs; one set through innerHTML does not
+      var mark = document.createComment('script');
+      old.parentNode.replaceChild(mark, old);
+      scripts.push({ mark: mark, old: old });
     });
     payBox.appendChild(frag);
     embedMounted = true;
+    // Re-create each script so it runs (one set through innerHTML does not), one at a time and in order:
+    // an inline script after an external one waits for that one to load, as it would in a normal page.
+    (function next(i) {
+      if (i >= scripts.length) return;
+      var item = scripts[i], el = document.createElement('script');
+      Array.prototype.forEach.call(item.old.attributes, function (a) { el.setAttribute(a.name, a.value); });
+      el.textContent = item.old.textContent;
+      var external = el.hasAttribute('src');
+      if (external) { var go = function () { next(i + 1); }; el.addEventListener('load', go); el.addEventListener('error', go); }
+      item.mark.parentNode.replaceChild(el, item.mark);
+      if (!external) next(i + 1);
+    })(0);
   }
 
   var openCheckout = function (lead) {
     if (missingPanel) missingPanel.hidden = true;
     var provider = cfg.checkout.provider;
     track('checkout_open', { provider: provider });
+    if (!payBox && (provider === 'whop' || provider === 'embed')) return warn('the checkout box (data-funnel-pay) is missing from the page, so the checkout cannot be shown.');
     if (provider === 'whop') return mountWhop(lead);
     if (provider === 'embed') return mountEmbed(lead);
     if (provider === 'link') {
@@ -491,18 +525,25 @@
     if (detailsStep) detailsStep.hidden = true;
     if (paymentStep) paymentStep.hidden = false;
     setStep(2); // the page stays where the visitor is: no scroll here
+    if (paymentStep && paymentStep.focus) paymentStep.focus({ preventScroll: true }); // keyboard and screen-reader users follow along
     openCheckout(lead);
   }
+  function backToDetails() {
+    busy = false;
+    if (cfg.checkout.provider === 'whop') unmountWhop(); // remounted with the edited details
+    if (paymentStep) paymentStep.hidden = true;
+    setStep(1);
+    if (state.ended && cfg.deadline.afterEnd !== 'keep') { showEnded(); return; }
+    if (detailsStep) detailsStep.hidden = false;
+    var first = field('name');
+    if (first && first.focus) first.focus({ preventScroll: true });
+  }
   $$('[data-funnel-edit]').forEach(function (btn) {
-    onActivate(btn, function (e) {
-      e.preventDefault();
-      busy = false;
-      if (cfg.checkout.provider === 'whop') unmountWhop(); // remounted with the edited details
-      if (paymentStep) paymentStep.hidden = true;
-      setStep(1);
-      if (state.ended && cfg.deadline.afterEnd !== 'keep') { showEnded(); return; }
-      if (detailsStep) detailsStep.hidden = false;
-    });
+    onActivate(btn, function (e) { e.preventDefault(); backToDetails(); });
+  });
+  // Back from a link checkout: the browser may restore the page as it was left (step 2, empty); show the form again
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted && cfg.checkout.provider === 'link' && paymentStep && !paymentStep.hidden) backToDetails();
   });
 
   // ---------------------------------------------------------------- FAQ: tabs and accordion (any number of items open)
@@ -616,13 +657,21 @@
   // ---------------------------------------------------------------- hero video: a poster until the visitor clicks, then the embed
   $$('[data-funnel-video]').forEach(function (box) {
     var tpl = $('template', box);
-    onActivate(box, function () {
-      if (!tpl || !tpl.content || !hasContent(tpl.content) || box.getAttribute('data-loaded')) return;
+    function play(e) {
+      if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+      if (!tpl || !tpl.content || !hasContent(tpl.content)) return;
+      e.preventDefault();
       var frag = document.importNode(tpl.content, true);
       Array.prototype.slice.call(box.children).forEach(function (c) { if (c !== tpl) box.removeChild(c); });
       box.appendChild(frag);
       box.setAttribute('data-loaded', 'true');
-    });
+      // the player owns clicks and keys from now on
+      box.removeEventListener('click', play);
+      box.removeEventListener('keydown', play);
+      ['role', 'tabindex', 'aria-label'].forEach(function (a) { box.removeAttribute(a); });
+    }
+    box.addEventListener('click', play);
+    box.addEventListener('keydown', play);
     box.setAttribute('role', 'button');
     box.setAttribute('tabindex', '0');
     box.setAttribute('aria-label', 'Play the video');
