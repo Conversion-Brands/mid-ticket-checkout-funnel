@@ -8,6 +8,7 @@ module.exports = defineConfig({
   testDir: 'tests',
   timeout: 30000,
   fullyParallel: true,
+  workers: 3, // more parallel Chrome starts made context creation hang on this machine
   reporter: [['list']],
   use: {
     channel: 'chrome',
