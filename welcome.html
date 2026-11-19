@@ -1,0 +1,167 @@
+<!doctype html>
+<!--
+  Mid-ticket Checkout Funnel - welcome page (where buyers land after paying).
+  Template by The Conversion Brands (https://theconversionbrands.com). Free to use, MIT licence.
+  Set your checkout provider's success redirect to this page. Guide: SETUP.md and docs/CHECKOUTS.md.
+  Everything marked data-sample is example content: replace it with your own, or delete it.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Welcome | Northstar Launch Lab</title>
+  <script>
+  // Some checkouts send the buyer here whatever the outcome (?status=failed or canceled after a bank page or PayPal).
+  // Those go back to the checkout with a notice. If your sales page is not index.html, change the path below.
+  (function () {
+    var m = location.search.match(/[?&]status=(failed|canceled|cancelled|error)(&|$)/);
+    if (!m) return;
+    document.documentElement.style.visibility = 'hidden';
+    location.replace('index.html?payment=' + m[1] + '#checkout');
+  })();
+  </script>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/funnel.css">
+  <link rel="stylesheet" href="css/states.css">
+</head>
+<body>
+
+<section class="mtf-section mtf-hero" id="top" data-funnel-section="hero">
+  <div class="mtf-section-bg"><div class="mtf-bg-grid"></div><div class="mtf-bg-fade mtf-is-hero"></div><div class="mtf-bg-glow mtf-is-hero"></div></div>
+  <div class="mtf-container mtf-is-hero">
+    <div class="mtf-hero-intro">
+      <div class="mtf-hero-brand">
+        <img class="mtf-logo" src="assets/placeholders/logo.svg" width="124" height="50" alt="Your brand" data-sample>
+        <div class="mtf-countdown-pill">
+          <svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg>
+          <p class="mtf-countdown-pill-label">Payment confirmed, you&rsquo;re in</p>
+        </div>
+      </div>
+      <div class="mtf-heading-group mtf-is-hero">
+        <h1 class="mtf-heading-h1"><span data-funnel-greeting="You did it, {first_name}!">You did it!</span> Welcome To The <span class="mtf-span-italic">Northstar Launch Lab</span></h1>
+        <p class="mtf-text-xl">Your access details are on their way to your inbox. Follow the three steps below to get set up today, starting with the community.</p>
+      </div>
+    </div>
+    <div class="mtf-cta">
+      <a href="#steps" class="mtf-button mtf-is-lg">
+        <div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Start With Step 1</div></div>
+        <div class="mtf-button-sublabel mtf-is-lg">It takes less than five minutes</div>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- /hero -->
+
+<section class="mtf-section mtf-steps" id="steps" data-funnel-section="steps">
+  <div class="mtf-section-bg"><div class="mtf-bg-grid"></div><div class="mtf-bg-fade mtf-is-v2"></div></div>
+  <div class="mtf-container mtf-is-v2">
+    <div class="mtf-section-header">
+      <div class="mtf-heading-group">
+        <h2 class="mtf-heading-h3 mtf-is-v2">Your Next Steps<br><span class="mtf-span-color">To Get Started Today</span></h2>
+        <p class="mtf-text-xl mtf-is-secondary">Do these three things in order and you will be ready for your first week.</p>
+      </div>
+    </div>
+    <div class="mtf-grid mtf-is-3col">
+      <div class="mtf-card mtf-is-step">
+        <img class="mtf-step-graphic" src="assets/placeholders/welcome-step-1.svg" width="318" height="200" alt="">
+        <div class="mtf-card-content mtf-is-step">
+          <p class="mtf-label-sm mtf-is-accent">Step 1</p>
+          <h4 class="mtf-heading-h5 mtf-in-card-content">Join the community</h4>
+          <p class="mtf-text-sm mtf-is-secondary">Say hello in the private community and introduce yourself. This is where you will find the call links, share wins and get answers between calls.</p>
+          <a href="#" class="mtf-button mtf-is-sm mtf-in-welcome" data-sample><div class="mtf-button-label mtf-is-sm">Join The Community</div></a>
+        </div>
+      </div>
+      <div class="mtf-card mtf-is-step">
+        <img class="mtf-step-graphic" src="assets/placeholders/welcome-step-2.svg" width="318" height="200" alt="">
+        <div class="mtf-card-content mtf-is-step">
+          <p class="mtf-label-sm mtf-is-accent">Step 2</p>
+          <h4 class="mtf-heading-h5 mtf-in-card-content">Watch the first lesson</h4>
+          <p class="mtf-text-sm mtf-is-secondary">Log in to the course with the email you used at checkout and watch the welcome lesson. It shows you how the six weeks work and what to do first.</p>
+        </div>
+      </div>
+      <div class="mtf-card mtf-is-step">
+        <img class="mtf-step-graphic" src="assets/placeholders/welcome-step-3.svg" width="318" height="200" alt="">
+        <div class="mtf-card-content mtf-is-step">
+          <p class="mtf-label-sm mtf-is-accent">Step 3</p>
+          <h4 class="mtf-heading-h5 mtf-in-card-content">Book your weekly coaching call</h4>
+          <p class="mtf-text-sm mtf-is-secondary">Add the weekly call to your calendar. Bring one question to your first call. If you can&rsquo;t make it live, the recording is posted in the community the same day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /steps -->
+
+<section class="mtf-section mtf-letter" data-funnel-section="letter">
+  <div class="mtf-section-bg"><div class="mtf-bg-grain"></div><div class="mtf-bg-vignette"></div></div>
+  <div class="mtf-container mtf-is-letter">
+    <div class="mtf-letter-stack">
+      <div class="mtf-letter-paper" data-sample>
+        <img class="mtf-tape mtf-is-left" src="assets/decor/tape-left.svg" width="113" height="90" alt="">
+        <img class="mtf-tape mtf-is-right" src="assets/decor/tape-right.svg" width="97" height="71" alt="">
+        <div class="mtf-letter-header">
+          <p class="mtf-label mtf-is-accent">A message from the founder</p>
+          <p class="mtf-label mtf-is-tertiary">Welcome</p>
+        </div>
+        <div class="mtf-letter-opening">
+          <div class="mtf-letter-greeting">
+            <p class="mtf-script mtf-is-small" data-funnel-greeting="Hi {first_name},">Hi there,</p>
+            <h2 class="mtf-heading-h3 mtf-is-italic">Welcome to the Lab. <span class="mtf-span-color">Here&rsquo;s what&rsquo;s next.</span></h2>
+          </div>
+        </div>
+        <p class="mtf-text-lg mtf-is-secondary">Thank you for joining. You just made the decision most people only talk about. Over the next six weeks you will shape your offer, record a simple course and launch it to the people who already know you. You don&rsquo;t have to get it perfect. You only have to keep showing up.</p>
+        <p class="mtf-text-lg mtf-is-secondary">Start with the three steps above today. If anything is unclear, ask in the community or bring it to the weekly call.</p>
+        <div class="mtf-letter-signoff">
+          <p class="mtf-script mtf-in-welcome">Talk soon, and welcome aboard,</p>
+          <p class="mtf-signature">Alex Morgan</p>
+          <p class="mtf-text-sm mtf-is-tertiary">Alex Morgan, founder of Northstar Launch Lab</p>
+        </div>
+        <div class="mtf-polaroids mtf-in-welcome">
+          <div class="mtf-polaroid mtf-is-left"><img class="mtf-polaroid-photo" src="assets/placeholders/photo-1.svg" width="400" height="520" alt="The founder"></div>
+          <div class="mtf-polaroid mtf-is-right"><img class="mtf-polaroid-photo" src="assets/placeholders/photo-2.svg" width="400" height="520" alt="The founder at work"></div>
+        </div>
+        <div class="mtf-letter-ps">
+          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium-color">P.S.</span> Questions about your access or your payment? Email us at <a class="mtf-span-medium-color" href="mailto:hello@example.com">hello@example.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /letter -->
+
+<footer class="mtf-footer" data-funnel-section="footer">
+  <div class="mtf-container mtf-is-footer">
+    <div class="mtf-footer-top">
+      <img class="mtf-logo mtf-in-footer-top" src="assets/placeholders/logo-inverse.svg" width="224" height="91" alt="Your brand" data-sample>
+      <div class="mtf-footer-links">
+        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary">Privacy Policy</a>
+        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary">Terms of Service</a>
+        <a href="#top" class="mtf-back-to-top"><div class="mtf-text-sm mtf-is-medium mtf-is-inverse">Back to top</div><div class="mtf-icon-button mtf-is-outline"><svg class="mtf-icon mtf-is-inverse mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></div></a>
+      </div>
+    </div>
+    <div class="mtf-footer-disclaimers" data-sample>
+      <div class="mtf-disclaimer">
+        <p class="mtf-label-sm mtf-is-inverse-secondary">Platform disclaimer</p>
+        <p class="mtf-text-legal mtf-is-inverse-tertiary">This site is not part of, or endorsed by, any social media platform mentioned on this page. Platform names are trademarks of their owners.</p>
+      </div>
+      <div class="mtf-disclaimer">
+        <p class="mtf-label-sm mtf-is-inverse-secondary">Earnings disclaimer</p>
+        <p class="mtf-text-legal mtf-is-inverse-tertiary">Results shown are not typical and are not a promise of what you will earn. Your results depend on your effort, experience, market and many other factors. Replace this text with the earnings disclaimer your lawyer or terms of service require.</p>
+      </div>
+    </div>
+    <div class="mtf-divider"></div>
+    <div class="mtf-footer-bottom">
+      <p class="mtf-text-xs mtf-is-inverse-tertiary">&copy; 2026 Your Company. All rights reserved.</p>
+      <div class="mtf-payment-logos"><img class="mtf-payment-logo" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-payment-logo" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-payment-logo" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-payment-logo" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-payment-logo" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div>
+    </div>
+    <p class="mtf-credit" data-sample>Template by The Conversion Brands. <a class="mtf-credit-link" href="https://theconversionbrands.com/">Want it built for you?</a></p>
+  </div>
+</footer>
+<!-- /footer -->
+
+<script src="vendor/canvas-confetti-1.9.3/confetti.browser.js"></script>
+<script src="js/welcome.js"></script>
+</body>
+</html>
