@@ -63,3 +63,6 @@ html.mtf-show-samples [data-sample] { outline: 2px dashed var(--mtf-danger); out
   [data-funnel-marquee-row] { animation: none; }
   .mtf-sticky-bar, .mtf-sticky-bar.mtf-is-visible { transition: none; }
 }
+
+/* FAQ plus / minus icon */
+[data-funnel-faq-item].mtf-is-open .mtf-faq-plus, [data-funnel-faq-item]:not(.mtf-is-open) .mtf-faq-minus { display: none; }

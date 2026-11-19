@@ -1,3 +1,588 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>stub</title></head>
-<body><p id="stub">stub</p><script src="funnel.config.js"></script></body></html>
+<!--
+  Mid-ticket Checkout Funnel - sales page with a two-step checkout.
+  Template by The Conversion Brands (https://theconversionbrands.com). Free to use, MIT licence.
+  Settings: funnel.config.js. Colours and fonts: css/theme.css. Guide for AI tools and people: SETUP.md.
+  Everything marked data-sample is example content: replace it with your own, or delete it.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northstar Launch Lab | Black Friday</title>
+  <meta name="description" content="One sentence about your offer for search results and link previews.">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/funnel.css">
+  <link rel="stylesheet" href="css/states.css">
+  <link rel="stylesheet" href="vendor/intl-tel-input-25.3.1/css/intlTelInput.css">
+</head>
+<body>
+
+<div class="mtf-announcement" id="top" data-funnel-section="announcement" data-funnel-sale>
+  <p class="mtf-label mtf-is-inverse"><svg class="mtf-icon mtf-is-inverse mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> Black Friday sale: <span data-funnel-price="savings-percent">50%</span> off</p>
+  <div class="mtf-announcement-prices">
+    <p class="mtf-timer mtf-is-inverse"><s data-funnel-price="compare-at">$997</s></p>
+    <p class="mtf-timer mtf-is-bold mtf-is-inverse" data-funnel-price="price">$497</p>
+  </div>
+</div>
+<!-- /announcement -->
+
+<section class="mtf-section mtf-hero" data-funnel-section="hero">
+  <div class="mtf-section-bg"><div class="mtf-bg-grid"></div><div class="mtf-bg-fade mtf-is-hero"></div><div class="mtf-bg-glow mtf-is-hero"></div></div>
+  <div class="mtf-container mtf-is-hero">
+    <div class="mtf-hero-intro">
+      <div class="mtf-hero-brand">
+        <img class="mtf-logo" src="assets/placeholders/logo.svg" width="124" height="50" alt="Your brand" data-sample>
+        <div class="mtf-countdown-pill" data-funnel-countdown-wrap>
+          <svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p class="mtf-countdown-pill-label">Black Friday deal ending in:</p>
+          <p class="mtf-countdown-pill-old-price" data-funnel-countdown>00D:00H:00M:00S</p>
+        </div>
+      </div>
+      <div class="mtf-heading-group mtf-is-hero">
+        <h1 class="mtf-heading-h1">Introducing The <span class="mtf-span-italic">Northstar Launch Lab</span> That Has Helped <span data-sample>120+</span> Coaches Launch <span class="mtf-span-color">Their First Online Course</span> In 6 Weeks Or Less.</h1>
+        <p class="mtf-text-xl">Turn what you already teach into a paid course, without a big audience, a tech team or months of filming. Watch the short video below to see how it works.</p>
+      </div>
+    </div>
+    <div class="mtf-video" data-funnel-video data-sample>
+      <img class="mtf-video-poster" src="assets/placeholders/video-poster.svg" width="1280" height="720" alt="Watch the video">
+      <span class="mtf-video-play"><svg class="mtf-icon mtf-is-inverse mtf-is-28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg></span>
+      <template><!-- Paste your video embed here (YouTube, Vimeo, Wistia, Loom...). It loads when the visitor clicks play. --></template>
+    </div>
+    <div class="mtf-cta">
+      <a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale>
+        <div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg mtf-is-v2">Claim My Black Friday Offer Now</div></div>
+        <div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
+      </a>
+      <div class="mtf-social-proof" data-sample>
+        <img class="mtf-social-proof-avatars" src="assets/placeholders/avatars.svg" width="53" height="21" alt="">
+        <p class="mtf-social-proof-label">Join <span class="mtf-span-medium">120+</span> students</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /hero -->
+
+<section id="checkout" class="mtf-section mtf-checkout" data-funnel-section="checkout">
+  <div class="mtf-container mtf-is-checkout">
+    <div class="mtf-card mtf-is-panel mtf-is-checkout">
+      <div class="mtf-checkout-product">
+        <img class="mtf-logo" src="assets/placeholders/logo.svg" width="110" height="45" alt="Your brand" data-sample>
+        <div class="mtf-checkout-title">
+          <h2 class="mtf-heading-h5 mtf-is-underline">Here&rsquo;s Everything You Get Today:</h2>
+          <h3 class="mtf-heading-h3">The Northstar Launch Lab<br><span class="mtf-span-italic">Black Friday Bundle</span> - <span class="mtf-span-color"><span data-funnel-price="savings-percent">50%</span> Off</span></h3>
+          <p class="mtf-text-md mtf-is-secondary mtf-in-checkout-title">Get the full program, weekly coaching calls, the private community and three bonuses. (Black Friday only)</p>
+        </div>
+        <img class="mtf-mockup" src="assets/placeholders/bundle.svg" width="495" height="297" alt="Everything included in the bundle" data-sample>
+        <div class="mtf-access">
+          <p class="mtf-label-sm">Join now and get instant access to:</p>
+          <div class="mtf-access-columns">
+            <div class="mtf-checklist">
+              <div class="mtf-checklist-item"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-checklist-item-label">Full Launch Lab Training Program</p></div>
+              <div class="mtf-checklist-item"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-checklist-item-label">Weekly Group Coaching Calls</p></div>
+              <div class="mtf-checklist-item"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-checklist-item-label">Private Founder Community</p></div>
+            </div>
+            <div class="mtf-checklist mtf-is-v2">
+              <div class="mtf-checklist-item"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-checklist-item-label mtf-is-v2">The Offer Builder Workbook</p></div>
+              <div class="mtf-checklist-item"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-checklist-item-label">The Launch Email Swipe File</p></div>
+              <div class="mtf-checklist-item"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-checklist-item-label">The Sales Page Scorecard</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="mtf-social-proof mtf-is-md" data-sample>
+          <img class="mtf-social-proof-avatars mtf-is-md" src="assets/placeholders/avatars-md.svg" width="125" height="49" alt="">
+          <p class="mtf-social-proof-label mtf-is-md">Join <span class="mtf-span-medium">120+</span> coaches building their first course</p>
+        </div>
+      </div>
+
+      <div class="mtf-checkout-form">
+        <div class="mtf-stepper" data-funnel-stepper>
+          <div class="mtf-stepper-track">
+            <div class="mtf-stepper-step mtf-is-active" data-step="1"><p class="mtf-stepper-step-number mtf-is-active">1</p></div>
+            <div class="mtf-stepper-connector-1"></div>
+            <div class="mtf-stepper-step" data-step="2"><p class="mtf-stepper-step-number">2</p></div>
+            <div class="mtf-stepper-connector-2"></div>
+            <div class="mtf-stepper-step" data-step="3"><p class="mtf-stepper-step-number">3</p></div>
+          </div>
+        </div>
+
+        <div class="mtf-checkout-step" data-funnel-step="details">
+          <form class="mtf-form-group" data-funnel-form novalidate>
+            <p class="mtf-text-lg mtf-is-medium">Contact Information</p>
+            <div class="mtf-input"><input class="mtf-input-field" type="text" name="name" id="mtf-name" placeholder="Full name" autocomplete="name" aria-label="Full name"></div>
+            <p class="mtf-field-error" data-funnel-error="name" hidden></p>
+            <div class="mtf-input"><input class="mtf-input-field" type="email" name="email" id="mtf-email" placeholder="Email address here..." autocomplete="email" aria-label="Email address"></div>
+            <p class="mtf-field-error" data-funnel-error="email" hidden></p>
+            <div class="mtf-input mtf-is-phone" data-funnel-phone><input class="mtf-input-field" type="tel" name="phone" id="mtf-phone" placeholder="Phone number" autocomplete="tel" aria-label="Phone number"></div>
+            <p class="mtf-field-error" data-funnel-error="phone" hidden></p>
+            <label class="mtf-consent" data-funnel-consent hidden><input class="mtf-consent-box" type="checkbox" name="consent"><span>Yes, email me about this offer. You can unsubscribe at any time. See our <a href="#">privacy policy</a>.</span></label>
+            <p class="mtf-field-error" data-funnel-error="consent" hidden></p>
+          </form>
+          <div class="mtf-checkout-total">
+            <p class="mtf-text-lg mtf-is-medium">Total Payment:</p>
+            <div class="mtf-price">
+              <p class="mtf-heading-h4 mtf-is-tertiary mtf-is-strike" data-funnel-price="compare-at">$997</p>
+              <p class="mtf-heading-h3 mtf-in-price" data-funnel-price="price">$497</p>
+            </div>
+          </div>
+          <div class="mtf-checkout-pay">
+            <a href="#" class="mtf-button" role="button" data-funnel-continue><div class="mtf-button-label mtf-is-bold">Continue To Checkout</div></a>
+            <p class="mtf-secure-note"><svg class="mtf-icon mtf-is-ink mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Secure checkout</p>
+            <div class="mtf-trust-logos mtf-is-stacked">
+              <p class="mtf-trust-label">100% safe checkout with</p>
+              <div class="mtf-trust-logos-payment-methods mtf-is-stacked"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mtf-checkout-step" data-funnel-step="payment" hidden>
+          <div class="mtf-pay-summary"><span class="mtf-pay-summary-text" data-funnel-summary></span><button type="button" class="mtf-pay-edit" data-funnel-edit>Edit details</button></div>
+          <div class="mtf-pay-embed" data-funnel-pay></div>
+          <div class="mtf-pay-missing" data-funnel-checkout-missing hidden>
+            <p><strong>Add your checkout here.</strong> Set <code>checkout.provider</code> in funnel.config.js to <code>whop</code>, <code>embed</code> or <code>link</code>. See docs/CHECKOUTS.md for Whop, Stripe, Lemon Squeezy, ThriveCart, SamCart and GoHighLevel.</p>
+          </div>
+        </div>
+        <template data-funnel-checkout-embed><!-- Paste your checkout embed code here (provider "embed"). {email}, {name}, {first_name} and {phone} are filled in for you. --></template>
+
+        <div class="mtf-offer-ended" data-funnel-ended hidden>
+          <h3 class="mtf-heading-h4">This offer has ended</h3>
+          <p class="mtf-text-md mtf-is-secondary">Thanks for your interest. The Black Friday price is no longer available.</p>
+          <a href="#" class="mtf-button" data-funnel-ended-link hidden><div class="mtf-button-label mtf-is-bold">Join the waitlist</div></a>
+        </div>
+      </div>
+      <div class="mtf-countdown" data-funnel-countdown-wrap>
+        <div class="mtf-countdown-12gap">
+          <svg class="mtf-icon mtf-is-inverse mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p class="mtf-countdown-label"><span data-funnel-price="savings-percent">50%</span> off <span class="mtf-span-color">Black Friday deal</span> ending in:</p>
+        </div>
+        <p class="mtf-countdown-timer" data-funnel-countdown>00D:00H:00M:00S</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /checkout -->
+
+<section class="mtf-section mtf-testimonials" data-funnel-section="testimonials">
+  <div class="mtf-section-bg"><div class="mtf-bg-grain"></div></div>
+  <div class="mtf-container">
+    <h2 class="mtf-heading-h3 mtf-in-container">Hear from the people who started <span class="mtf-span-italic-color">exactly where you are</span></h2>
+    <div class="mtf-carousel">
+      <div class="mtf-grid mtf-is-3col mtf-is-carousel" data-funnel-carousel>
+        <div class="mtf-testimonial-card mtf-is-community" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">JP</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Jordan P.</p><div class="mtf-level-badge">Advanced</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">My first launch: <span class="mtf-span-highlight">34 people joined in the first weekend</span>, and I only had 900 followers.</p></div></div>
+        <div class="mtf-testimonial-card mtf-is-community" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">AK</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Amira K.</p><div class="mtf-level-badge">Advanced</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">I used the offer workbook on a Sunday and <span class="mtf-span-highlight">sold my first seat on Tuesday</span>. The weekly calls kept me moving.</p></div></div>
+        <div class="mtf-testimonial-card mtf-is-community" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">SD</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Sam D.</p><div class="mtf-level-badge mtf-is-intermediate">Intermediate</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">I was scared of the tech. <span class="mtf-span-highlight">The setup lessons took one afternoon</span> and everything just works now.</p></div></div>
+        <div class="mtf-testimonial-card mtf-is-community" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">PN</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Priya N.</p><div class="mtf-level-badge mtf-is-beginner">Beginner</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">Win of the week: <span class="mtf-span-highlight">I finally recorded module one</span>. Small step, but it is real now.</p></div></div>
+        <div class="mtf-testimonial-card mtf-is-community" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">LM</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Luis M.</p><div class="mtf-level-badge mtf-is-intermediate">Intermediate</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">The email swipe file alone was worth it. <span class="mtf-span-highlight">My launch emails got 3x the replies</span> I usually get.</p></div></div>
+        <div class="mtf-testimonial-card mtf-is-community" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">HT</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Hannah T.</p><div class="mtf-level-badge">Advanced</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">I had a course idea for two years. <span class="mtf-span-highlight">Six weeks in the Lab and it is live</span> with paying students.</p></div></div>
+      </div>
+    </div>
+    <div class="mtf-carousel-controls">
+      <button type="button" class="mtf-icon-button mtf-is-outline" data-funnel-carousel-prev aria-label="Previous testimonials"><svg class="mtf-icon mtf-is-ink mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      <div class="mtf-pagination" data-funnel-carousel-dots></div>
+      <button type="button" class="mtf-icon-button" data-funnel-carousel-next aria-label="Next testimonials"><svg class="mtf-icon mtf-is-inverse mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+    </div>
+  </div>
+</section>
+<!-- /testimonials -->
+
+<section class="mtf-section mtf-audience" data-funnel-section="audience">
+  <div class="mtf-section-bg"><div class="mtf-bg-grain"></div><div class="mtf-bg-glow mtf-is-audience"></div></div>
+  <div class="mtf-container mtf-is-audience">
+    <div class="mtf-grid mtf-is-2col">
+      <div class="mtf-card mtf-is-muted">
+        <div class="mtf-card-content mtf-is-audience">
+          <div class="mtf-toggle" aria-hidden="true"><div class="mtf-toggle-track"></div><div class="mtf-toggle-knob"></div></div>
+          <div class="mtf-card-list">
+            <div class="mtf-card-title"><h2 class="mtf-heading-h4 mtf-in-card-title">This is not for you if...</h2></div>
+            <div class="mtf-check-list">
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-muted mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-in-audience">You want a course that sells itself overnight</p></div>
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-muted mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-in-audience">You are not willing to show up for 6 weeks</p></div>
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-muted mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-in-audience">You have nothing you can teach yet</p></div>
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-muted mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-in-audience">You are not ready to invest in yourself and get feedback on your work</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mtf-card mtf-is-brand">
+        <div class="mtf-card-content mtf-is-audience">
+          <div class="mtf-toggle mtf-is-on" aria-hidden="true"><div class="mtf-toggle-track mtf-is-on"></div><div class="mtf-toggle-knob mtf-is-on"></div></div>
+          <div class="mtf-card-list">
+            <div class="mtf-card-title"><h3 class="mtf-heading-h4 mtf-is-inverse">This is for you if you...</h3></div>
+            <div class="mtf-check-list mtf-is-v2">
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-inverse mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-is-inverse mtf-in-audience">Already help people one to one and want to scale it</p></div>
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-inverse mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-is-inverse mtf-in-audience">Want an income that does not depend on your calendar</p></div>
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-inverse mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-is-inverse mtf-in-audience">Have a small audience, or none, and want a clear plan</p></div>
+              <div class="mtf-check-list-item"><svg class="mtf-icon mtf-is-inverse mtf-is-24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><p class="mtf-text-lg mtf-is-medium mtf-is-inverse mtf-in-audience">Feel lost in all the course advice online</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /audience -->
+
+<section class="mtf-section mtf-steps" data-funnel-section="steps">
+  <div class="mtf-section-bg"><div class="mtf-bg-grid"></div><div class="mtf-bg-fade mtf-is-v2"></div></div>
+  <div class="mtf-container mtf-is-v2">
+    <div class="mtf-section-header">
+      <div class="mtf-heading-group">
+        <h2 class="mtf-heading-h3 mtf-is-v2">How Your First Course Comes Together,<br><span class="mtf-span-color">Step By Step</span></h2>
+        <p class="mtf-text-xl mtf-is-secondary">You do not need a studio or a big following. You need a clear offer, a simple course and a launch plan. The Lab walks you through all three.</p>
+      </div>
+    </div>
+    <div class="mtf-grid mtf-is-3col">
+      <div class="mtf-card mtf-is-step">
+        <img class="mtf-step-graphic" src="assets/placeholders/step-card-1.svg" width="318" height="200" alt="">
+        <div class="mtf-card-content mtf-is-step">
+          <p class="mtf-label-sm mtf-is-accent">Step 1</p>
+          <h4 class="mtf-heading-h5 mtf-in-card-content">Shape an offer people want to buy</h4>
+          <p class="mtf-text-sm mtf-is-secondary">Turn what you already know into one clear promise. The Offer Builder helps you test it with real conversations before you record a single lesson.</p>
+        </div>
+      </div>
+      <div class="mtf-card mtf-is-step">
+        <img class="mtf-step-graphic" src="assets/placeholders/step-card-2.svg" width="318" height="200" alt="">
+        <div class="mtf-card-content mtf-is-step">
+          <p class="mtf-label-sm mtf-is-accent">Step 2</p>
+          <h4 class="mtf-heading-h5 mtf-in-card-content">Record a simple course on your phone</h4>
+          <p class="mtf-text-sm mtf-is-secondary">Short lessons, filmed at home, with a structure that keeps students moving. No fancy gear or editing skills needed.</p>
+        </div>
+      </div>
+      <div class="mtf-card mtf-is-step">
+        <img class="mtf-step-graphic" src="assets/placeholders/step-card-3.svg" width="318" height="200" alt="">
+        <div class="mtf-card-content mtf-is-step">
+          <p class="mtf-label-sm mtf-is-accent">Step 3</p>
+          <h4 class="mtf-heading-h5 mtf-in-card-content">Launch it to the people you know</h4>
+          <p class="mtf-text-sm mtf-is-secondary">Use the launch emails and posts to open the doors, take payments and welcome your first students.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim My Black Friday Offer Now</div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+    <p class="mtf-text-sm mtf-is-secondary mtf-in-container">That is the whole model. The Lab teaches you each step: how to shape the offer, what to put in each lesson, and how to launch to a small audience before you build a bigger one.</p>
+  </div>
+</section>
+<!-- /steps -->
+
+<section class="mtf-section mtf-included" data-funnel-section="included">
+  <div class="mtf-section-bg"><div class="mtf-bg-grain"></div><div class="mtf-bg-glow mtf-is-included"></div></div>
+  <div class="mtf-container mtf-is-included">
+    <div class="mtf-included-wrapper">
+      <div class="mtf-section-header mtf-is-included">
+        <div class="mtf-countdown-pill" data-funnel-countdown-wrap>
+          <svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p class="mtf-countdown-pill-label mtf-in-section-header"><span data-funnel-price="savings-percent">50%</span> off ending in:</p>
+          <p class="mtf-countdown-pill-old-price" data-funnel-countdown>00D:00H:00M:00S</p>
+        </div>
+        <h2 class="mtf-heading-h2">Here&rsquo;s what you&rsquo;re getting <span class="mtf-span-italic-underline">this Black Friday:</span></h2>
+      </div>
+      <div class="mtf-included-stack">
+        <div class="mtf-deliverables">
+          <div class="mtf-grid mtf-is-stack">
+            <div class="mtf-card mtf-is-feature">
+              <div class="mtf-mockup-devices">
+                <img class="mtf-mockup-image" src="assets/placeholders/laptop.svg" width="414" height="250" alt="The course on a laptop">
+                <img class="mtf-mockup-image mtf-is-v2" src="assets/placeholders/tablet.svg" width="202" height="155" alt="The course on a tablet">
+                <img class="mtf-mockup-image mtf-is-v3" src="assets/placeholders/phone.svg" width="84" height="174" alt="The course on a phone">
+              </div>
+              <div class="mtf-card-content">
+                <div class="mtf-tag" data-sample><div class="mtf-tag-label">Value: $1,500</div></div>
+                <h3 class="mtf-heading-h3 mtf-is-v5">Full Launch Lab Training Program</h3>
+                <p class="mtf-text-lg mtf-is-secondary">Six weeks of short, practical lessons that take you from idea to a live course with paying students. Every lesson ends with one task, so you always know what to do next.</p>
+                <div class="mtf-bullet-list">
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">A step-by-step plan from course idea to launch day</p></div>
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Templates for your offer, lessons and sales page</p></div>
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Lessons you can follow on any device</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="mtf-card mtf-is-feature mtf-is-media-end">
+              <div class="mtf-card-content">
+                <div class="mtf-tag" data-sample><div class="mtf-tag-label">Value: $1,200</div></div>
+                <h3 class="mtf-heading-h3">Weekly Group Coaching Calls</h3>
+                <p class="mtf-text-lg mtf-is-secondary">Every week, join a live call with a coach who has launched courses before. Bring your questions, share your work and get feedback you can use the same day.</p>
+                <div class="mtf-bullet-list">
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Ask a real coach anything, live every week</p></div>
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Get honest feedback on your offer and lessons</p></div>
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Can&rsquo;t make it live? Every call is recorded</p></div>
+                </div>
+              </div>
+              <img class="mtf-feature-image mtf-is-wide" src="assets/placeholders/feature-wide.svg" width="526" height="333" alt="A coaching call">
+            </div>
+            <div class="mtf-card mtf-is-feature mtf-is-v2">
+              <img class="mtf-feature-image" src="assets/placeholders/feature.svg" width="498" height="272" alt="The community">
+              <div class="mtf-card-content">
+                <div class="mtf-tag" data-sample><div class="mtf-tag-label">Value: $600</div></div>
+                <h3 class="mtf-heading-h3">Private Founder Community</h3>
+                <p class="mtf-text-lg mtf-is-secondary">A private group of people building their first course at the same time as you. Share wins, swap feedback and find accountability partners.</p>
+                <div class="mtf-bullet-list">
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Meet people at the same stage as you</p></div>
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Get answers between calls from people who have been there</p></div>
+                  <div class="mtf-bullet"><div class="mtf-bullet-icon"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label">Never figure it out alone</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="mtf-heading-h3 mtf-in-deliverables">When you join today, you get these<br><span class="mtf-span-italic-underline">3 bonuses</span> for free <span class="mtf-span-color" data-sample>(worth over $650)</span></h3>
+          <div class="mtf-grid mtf-is-3col mtf-in-deliverables">
+            <div class="mtf-card mtf-is-bonus"><div class="mtf-card-header"><img class="mtf-card-media" src="assets/placeholders/box-1.svg" width="300" height="231" alt="The Offer Builder Workbook"><div class="mtf-card-content mtf-is-bonus mtf-is-v2"><p class="mtf-label-sm mtf-is-accent mtf-in-card-header">Bonus #1</p><h3 class="mtf-heading-h4">The Offer Builder Workbook</h3></div></div><div class="mtf-bullet-list mtf-is-sm"><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Fill-in pages that turn your skills into one clear course promise people pay for.</p></div><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Includes the 10 questions to ask before you build anything.</p></div><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Takes one afternoon to finish.</p></div></div></div>
+            <div class="mtf-card mtf-is-bonus"><div class="mtf-card-header"><img class="mtf-card-media" src="assets/placeholders/box-2.svg" width="300" height="231" alt="The Launch Email Swipe File"><div class="mtf-card-content mtf-is-bonus"><p class="mtf-label-sm mtf-is-accent mtf-in-card-header">Bonus #2</p><h3 class="mtf-heading-h4">The Launch Email Swipe File</h3></div></div><div class="mtf-bullet-list mtf-is-sm"><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Seven launch emails you can copy, from the first teaser to the last call.</p></div><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Written for small lists and warm audiences.</p></div><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Swap in your story and send.</p></div></div></div>
+            <div class="mtf-card mtf-is-bonus"><div class="mtf-card-header"><img class="mtf-card-media" src="assets/placeholders/box-3.svg" width="300" height="231" alt="The Sales Page Scorecard"><div class="mtf-card-content mtf-is-bonus"><p class="mtf-label-sm mtf-is-accent mtf-in-card-header">Bonus #3</p><h3 class="mtf-heading-h4">The Sales Page Scorecard</h3></div></div><div class="mtf-bullet-list mtf-is-sm"><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Score your sales page section by section before you send traffic to it.</p></div><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">See which part loses buyers and how to fix it.</p></div><div class="mtf-bullet mtf-is-sm"><div class="mtf-bullet-icon mtf-is-sm"><svg class="mtf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg></div><p class="mtf-bullet-label mtf-is-sm">Use it again for every launch.</p></div></div></div>
+          </div>
+          <div class="mtf-value-summary">
+            <p class="mtf-heading-h4 mtf-is-italic mtf-is-strike" data-sample>$3,950 total value</p>
+            <h3 class="mtf-heading-h4 mtf-is-italic">Only <span class="mtf-span-color" data-funnel-price="price">$497</span> for Black Friday</h3>
+          </div>
+        </div>
+        <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /included -->
+
+<section class="mtf-section mtf-letter" data-funnel-section="letter">
+  <div class="mtf-section-bg"><div class="mtf-bg-grain"></div><div class="mtf-bg-vignette"></div></div>
+  <div class="mtf-container mtf-is-letter">
+    <div class="mtf-letter-stack">
+      <div class="mtf-letter-paper" data-sample>
+        <img class="mtf-tape mtf-is-left" src="assets/decor/tape-left.svg" width="113" height="90" alt="">
+        <img class="mtf-tape mtf-is-right" src="assets/decor/tape-right.svg" width="97" height="71" alt="">
+        <div class="mtf-letter-header">
+          <p class="mtf-label mtf-is-accent">Message from the founder</p>
+          <p class="mtf-label mtf-is-tertiary">Black Friday 2026</p>
+        </div>
+        <div class="mtf-letter-opening">
+          <div class="mtf-letter-greeting">
+            <p class="mtf-script mtf-is-small">Hey future founder,</p>
+            <h2 class="mtf-heading-h3 mtf-is-italic">It&rsquo;s Not Too Late To Launch Your Course. Your Experience Is <span class="mtf-span-color">The Advantage.</span></h2>
+          </div>
+        </div>
+        <p class="mtf-text-lg mtf-is-secondary">Most people think they need these four things before they can sell a course.</p>
+        <div class="mtf-strike-list">
+          <div class="mtf-strike"><p class="mtf-heading-h5">A big audience</p><div class="mtf-strike-line"></div></div>
+          <div class="mtf-strike"><p class="mtf-heading-h5">Fancy tech</p><div class="mtf-strike-line mtf-is-v2"></div></div>
+          <div class="mtf-strike"><p class="mtf-heading-h5">A finished product</p><div class="mtf-strike-line mtf-is-v3"></div></div>
+          <div class="mtf-strike"><p class="mtf-heading-h5">Years of content</p><div class="mtf-strike-line mtf-is-v4"></div></div>
+        </div>
+        <p class="mtf-script mtf-is-accent">The truth is: you need none of them.</p>
+        <div class="mtf-letter-reasons">
+          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium-color">You don&rsquo;t need a big audience.</span> Your first students usually come from people who already know you: past clients, colleagues, the people in your inbox. Ten of them is a real launch.</p>
+          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium-color">You don&rsquo;t need fancy tech.</span> A phone, a quiet room and a simple course platform are enough. The Lab shows you the exact setup, step by step.</p>
+          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium">You don&rsquo;t need a finished product.</span> You sell the course first, then build it with your first students.</p>
+          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium-color">You don&rsquo;t need years of content.</span> One clear promise and a few weeks of lessons beat a hundred videos nobody asked for.</p>
+        </div>
+        <p class="mtf-text-lg mtf-is-secondary">Everything else, we walk you through inside the Lab, one step at a time. I can&rsquo;t wait to see what you build.</p>
+        <div class="mtf-polaroids">
+          <div class="mtf-polaroid mtf-is-left"><img class="mtf-polaroid-photo" src="assets/placeholders/photo-1.svg" width="400" height="520" alt="The founder"></div>
+          <div class="mtf-polaroid mtf-is-right"><img class="mtf-polaroid-photo" src="assets/placeholders/photo-2.svg" width="400" height="520" alt="The founder at work"></div>
+        </div>
+        <div class="mtf-letter-signoff">
+          <p class="mtf-script">See you inside,</p>
+          <p class="mtf-signature">Alex Morgan</p>
+          <p class="mtf-text-sm mtf-is-tertiary">Alex Morgan, founder of Northstar Launch Lab</p>
+        </div>
+        <div class="mtf-letter-ps">
+          <p class="mtf-text-md mtf-is-secondary"><span class="mtf-span-medium-color">P.S.</span> The Black Friday price is <span data-funnel-price="savings-percent">50%</span> off until the timer runs out. After that, the Lab goes back to its normal price.</p>
+          <div class="mtf-cta mtf-is-inline">
+            <a href="#checkout" class="mtf-button mtf-in-cta" data-funnel-sale>
+              <div class="mtf-button-label">Claim Full Access Now</div>
+              <div class="mtf-button-sublabel">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
+            </a>
+            <div class="mtf-cta-meta">
+              <p class="mtf-text-sm mtf-is-tertiary mtf-in-cta-meta">Instant access after checkout</p>
+              <div class="mtf-social-proof mtf-in-cta-meta">
+                <img class="mtf-social-proof-avatars" src="assets/placeholders/avatars.svg" width="53" height="21" alt="">
+                <p class="mtf-social-proof-label mtf-in-cta-meta">Join <span class="mtf-span-medium">120+</span> students</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /letter -->
+
+<section class="mtf-section mtf-offer" data-funnel-section="offer">
+  <div class="mtf-section-bg mtf-is-v2"><div class="mtf-bg-grain"></div><div class="mtf-bg-glow mtf-is-offer"></div></div>
+  <div class="mtf-container mtf-is-offer">
+    <div class="mtf-card mtf-is-panel mtf-is-value">
+      <div class="mtf-offer-bundle">
+        <div class="mtf-countdown mtf-is-light" data-funnel-countdown-wrap>
+          <svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p class="mtf-label mtf-is-accent mtf-in-countdown">Black Friday sale ending in:</p>
+          <p class="mtf-timer mtf-is-accent" data-funnel-countdown>00D:00H:00M:00S</p>
+        </div>
+        <h2 class="mtf-heading-h3 mtf-in-offer-bundle">The Northstar Launch Lab Black Friday Bundle</h2>
+        <img class="mtf-mockup" src="assets/placeholders/bundle.svg" width="496" height="297" alt="Everything included in the bundle" data-sample>
+        <img class="mtf-offer-badge" src="assets/placeholders/sticker.svg" width="89" height="92" alt="Black Friday sale" data-funnel-sale>
+        <div class="mtf-testimonial-card mtf-in-offer-bundle" data-sample>
+          <div class="mtf-testimonial-card-author">
+            <div class="mtf-testimonial-card-initials">PN</div>
+            <div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Priya N.</p><div class="mtf-level-badge mtf-is-beginner">Beginner</div></div>
+          </div>
+          <div class="mtf-testimonial-quote">
+            <p class="mtf-testimonial-quote-text"><span class="mtf-span-highlight">I am not a tech person at all.</span></p>
+            <p class="mtf-testimonial-quote-text">The setup lessons walked me through every click. My course page went live in one evening.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mtf-offer-checkout">
+        <div class="mtf-offer-summary">
+          <div class="mtf-value-list">
+            <p class="mtf-text-xl mtf-is-medium">What&rsquo;s included:</p>
+            <div class="mtf-value-items">
+              <div class="mtf-value-row"><svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-value-row-label">Full Launch Lab Training Program</p><p class="mtf-value-row-value" data-sample>$1,500</p></div>
+              <div class="mtf-value-row"><svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-value-row-label">Weekly Group Coaching Calls</p><p class="mtf-value-row-value" data-sample>$1,200</p></div>
+              <div class="mtf-value-row"><svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-value-row-label">Private Founder Community</p><p class="mtf-value-row-value" data-sample>$600</p></div>
+              <div class="mtf-value-row"><svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-value-row-label">The Offer Builder Workbook</p><p class="mtf-value-row-value" data-sample>$300</p></div>
+              <div class="mtf-value-row"><svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-value-row-label">The Launch Email Swipe File</p><p class="mtf-value-row-value" data-sample>$200</p></div>
+              <div class="mtf-value-row"><svg class="mtf-icon mtf-is-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="currentColor" stroke="none"/><path d="m7.5 12.3 3 3 6-6.2" style="stroke:var(--mtf-accent-ink)" stroke-width="2.4"/></svg><p class="mtf-value-row-label">The Sales Page Scorecard</p><p class="mtf-value-row-value" data-sample>$150</p></div>
+            </div>
+          </div>
+          <div class="mtf-value-totals">
+            <div class="mtf-value-total-row">
+              <p class="mtf-text-lg mtf-is-medium">Total real world value:</p>
+              <p class="mtf-heading-h4 mtf-is-tertiary mtf-is-strike" data-sample>$3,950</p>
+            </div>
+            <div class="mtf-value-total-row">
+              <div class="mtf-value-total-label">
+                <p class="mtf-text-lg mtf-is-medium">Total price:</p>
+                <div class="mtf-tag mtf-is-dark"><div class="mtf-tag-label mtf-is-dark">Black Friday: <span data-funnel-price="savings-percent">50%</span> Off</div></div>
+              </div>
+              <div class="mtf-price mtf-in-value-total-row">
+                <p class="mtf-heading-h3 mtf-is-tertiary"><s data-funnel-price="compare-at">$997</s></p>
+                <p class="mtf-heading-display" data-funnel-price="price">$497</p>
+              </div>
+            </div>
+          </div>
+          <a href="#checkout" class="mtf-button mtf-is-offer" data-funnel-sale>
+            <div class="mtf-button-label mtf-is-bold mtf-in-offer-summary">Claim My Black Friday Offer Now</div>
+            <div class="mtf-button-sublabel">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div>
+          </a>
+        </div>
+        <div class="mtf-trust">
+          <p class="mtf-secure-note"><svg class="mtf-icon mtf-is-ink mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Secure checkout</p>
+          <div class="mtf-trust-logos mtf-is-stacked">
+            <p class="mtf-trust-label">100% safe checkout with</p>
+            <div class="mtf-trust-logos-payment-methods mtf-is-stacked"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /offer -->
+
+<section id="faq" class="mtf-section mtf-faq" data-funnel-section="faq">
+  <div class="mtf-container mtf-is-v3">
+    <div class="mtf-section-header mtf-is-v2">
+      <h2 class="mtf-heading-h3 mtf-is-v2">Frequently Asked Questions</h2>
+      <p class="mtf-text-xl mtf-is-secondary mtf-is-v2">Answers to our most asked questions</p>
+    </div>
+    <div class="mtf-faq-list">
+      <div class="mtf-faq-tabs" role="tablist">
+        <div class="mtf-faq-tab mtf-is-active mtf-is-default" role="tab" tabindex="0" data-funnel-faq-tab="fit"><div class="mtf-faq-tab-label mtf-is-active mtf-is-default">Is This For Me?</div></div>
+        <div class="mtf-faq-tab mtf-is-default" role="tab" tabindex="0" data-funnel-faq-tab="payments"><div class="mtf-faq-tab-label mtf-is-default">Payments &amp; Refunds</div></div>
+        <div class="mtf-faq-tab mtf-is-default" role="tab" tabindex="0" data-funnel-faq-tab="access"><div class="mtf-faq-tab-label mtf-is-default">Support &amp; Access</div></div>
+      </div>
+      <div class="mtf-faq-panel" data-funnel-faq-panel="fit">
+        <div class="mtf-faq-item mtf-is-open" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row mtf-is-open" role="button" tabindex="0" aria-expanded="true" data-funnel-faq-q><p class="mtf-faq-item-question mtf-is-open">Do I need an audience to launch a course?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer mtf-is-open" data-funnel-faq-a>No. The Lab is built for people with a small audience or none. Most first launches sell to people who already know you: past clients, colleagues and your email contacts. You will learn how to reach them first and grow from there.</p></div>
+        <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">How much time do I need?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>Plan for about three to five hours a week for six weeks. Every lesson is short and ends with one task, so you can fit it around your work.</p></div>
+        <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">What if I do not know what my course should be about?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>That is what the first week is for. The Offer Builder Workbook helps you pick one topic people already ask you about and turn it into a clear promise.</p></div>
+        <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">Do I need any special equipment?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>No. A phone with a camera, a quiet room and a laptop are enough. The Lab shows you a simple, low-cost setup.</p></div>
+      </div>
+      <div class="mtf-faq-panel" data-funnel-faq-panel="payments" hidden>
+        <div class="mtf-faq-item mtf-is-open" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row mtf-is-open" role="button" tabindex="0" aria-expanded="true" data-funnel-faq-q><p class="mtf-faq-item-question mtf-is-open">What is included in the Black Friday price?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer mtf-is-open" data-funnel-faq-a>Everything on this page: the full program, the weekly coaching calls, the private community and the three bonuses, for a one-time payment.</p></div>
+        <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">Is there a refund policy?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>Write your real refund policy here, word for word, exactly as it appears in your terms of service.</p></div>
+        <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">Which payment methods can I use?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>List the payment methods your checkout accepts, for example cards, Apple Pay and PayPal.</p></div>
+      </div>
+      <div class="mtf-faq-panel" data-funnel-faq-panel="access" hidden>
+        <div class="mtf-faq-item mtf-is-open" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row mtf-is-open" role="button" tabindex="0" aria-expanded="true" data-funnel-faq-q><p class="mtf-faq-item-question mtf-is-open">When do I get access?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer mtf-is-open" data-funnel-faq-a>Right after checkout. You land on a welcome page with your next steps, and the access details arrive by email.</p></div>
+        <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">How long do I have access?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>Write how long buyers keep access to the program, the calls and the community.</p></div>
+        <div class="mtf-faq-item" data-funnel-faq-item data-sample><div class="mtf-faq-item-question-row" role="button" tabindex="0" aria-expanded="false" data-funnel-faq-q><p class="mtf-faq-item-question">How do I get help?</p><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg><svg class="mtf-icon mtf-is-ink mtf-is-28 mtf-faq-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></div><p class="mtf-faq-item-answer" data-funnel-faq-a>Email us at hello@example.com and we will get back to you within one working day.</p></div>
+      </div>
+    </div>
+    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+  </div>
+</section>
+<!-- /faq -->
+
+<section class="mtf-section mtf-results" data-funnel-section="results">
+  <div class="mtf-container mtf-is-results">
+    <div class="mtf-section-header mtf-is-v3">
+      <h2 class="mtf-heading-h3 mtf-is-v8">This is a <span class="mtf-span-underline">tiny fraction</span> of the wins our students share <span class="mtf-span-italic">every week</span></h2>
+      <p class="mtf-text-xl mtf-is-secondary mtf-is-v3">Join coaches and experts turning what they know into their first online course.</p>
+    </div>
+  </div>
+  <div class="mtf-marquee">
+    <div class="mtf-marquee-row" data-funnel-marquee-row>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">JP</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Jordan P.</p><div class="mtf-level-badge">Advanced</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">My first launch: <span class="mtf-span-highlight">34 people joined in the first weekend</span>, and I only had 900 followers.</p></div></div>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">SD</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Sam D.</p><div class="mtf-level-badge mtf-is-intermediate">Intermediate</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">I was scared of the tech. <span class="mtf-span-highlight">The setup lessons took one afternoon</span> and everything just works now.</p></div></div>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">LM</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Luis M.</p><div class="mtf-level-badge mtf-is-intermediate">Intermediate</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">The email swipe file alone was worth it. <span class="mtf-span-highlight">My launch emails got 3x the replies</span> I usually get.</p></div></div>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">GO</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Grace O.</p><div class="mtf-level-badge mtf-is-beginner">Beginner</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">Week two and <span class="mtf-span-highlight">I have my offer written down</span>. Feels good to finally have a plan.</p></div></div>
+    </div>
+    <div class="mtf-marquee-row mtf-is-reverse" data-funnel-marquee-row>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">AK</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Amira K.</p><div class="mtf-level-badge">Advanced</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">I used the offer workbook on a Sunday and <span class="mtf-span-highlight">sold my first seat on Tuesday</span>. The weekly calls kept me moving.</p></div></div>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">PN</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Priya N.</p><div class="mtf-level-badge mtf-is-beginner">Beginner</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">Win of the week: <span class="mtf-span-highlight">I finally recorded module one</span>. Small step, but it is real now.</p></div></div>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">HT</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Hannah T.</p><div class="mtf-level-badge">Advanced</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">I had a course idea for two years. <span class="mtf-span-highlight">Six weeks in the Lab and it is live</span> with paying students.</p></div></div>
+      <div class="mtf-testimonial-card mtf-is-community mtf-in-marquee" data-sample><div class="mtf-testimonial-card-author"><div class="mtf-testimonial-card-initials">MV</div><div class="mtf-testimonial-card-meta"><p class="mtf-testimonial-card-name">Marco V.</p><div class="mtf-level-badge mtf-is-intermediate">Intermediate</div></div></div><div class="mtf-testimonial-quote"><p class="mtf-testimonial-quote-text">The feedback on my sales page <span class="mtf-span-highlight">changed the whole headline</span>. Two sign-ups the next day.</p></div></div>
+    </div>
+  </div>
+  <div class="mtf-container mtf-is-results">
+    <div class="mtf-cta"><a href="#checkout" class="mtf-button mtf-is-lg" data-funnel-sale><div class="mtf-button-label-row mtf-is-lg"><div class="mtf-button-label mtf-is-lg">Claim Full Access For Only <span data-funnel-price="price">$497</span></div></div><div class="mtf-button-sublabel mtf-is-lg">Normally <span data-funnel-price="compare-at">$997</span> - Today <span data-funnel-price="price">$497</span></div></a><div class="mtf-trust-logos"><p class="mtf-trust-label">100% safe checkout with</p><div class="mtf-trust-logos-payment-methods"><img class="mtf-trust-logos-logo-payment-apple-pay" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-trust-logos-logo-payment-paypal" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-trust-logos-logo-payment-mastercard" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-trust-logos-logo-payment-visa" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-trust-logos-logo-payment-american-express" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div></div></div>
+  </div>
+</section>
+<!-- /results -->
+
+<footer class="mtf-footer" data-funnel-section="footer">
+  <div class="mtf-container mtf-is-footer">
+    <div class="mtf-footer-top">
+      <img class="mtf-logo mtf-in-footer-top" src="assets/placeholders/logo-inverse.svg" width="224" height="91" alt="Your brand" data-sample>
+      <div class="mtf-footer-links">
+        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary">Privacy Policy</a>
+        <a href="#" class="mtf-text-sm mtf-is-inverse-secondary">Terms of Service</a>
+        <a href="#top" class="mtf-back-to-top"><div class="mtf-text-sm mtf-is-medium mtf-is-inverse">Back to top</div><div class="mtf-icon-button mtf-is-outline"><svg class="mtf-icon mtf-is-inverse mtf-is-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></div></a>
+      </div>
+    </div>
+    <div class="mtf-divider"></div>
+    <div class="mtf-footer-disclaimers" data-sample>
+      <div class="mtf-disclaimer">
+        <p class="mtf-label-sm mtf-is-inverse-secondary">Platform disclaimer</p>
+        <p class="mtf-text-legal mtf-is-inverse-tertiary">This site is not part of, or endorsed by, any social media platform mentioned on this page. Platform names are trademarks of their owners.</p>
+      </div>
+      <div class="mtf-disclaimer">
+        <p class="mtf-label-sm mtf-is-inverse-secondary">Earnings disclaimer</p>
+        <p class="mtf-text-legal mtf-is-inverse-tertiary">Results shown are not typical and are not a promise of what you will earn. Your results depend on your effort, experience, market and many other factors. Replace this text with the earnings disclaimer your lawyer or terms of service require.</p>
+      </div>
+    </div>
+    <div class="mtf-divider"></div>
+    <div class="mtf-footer-bottom">
+      <p class="mtf-text-xs mtf-is-inverse-tertiary">&copy; 2026 Your Company. All rights reserved.</p>
+      <div class="mtf-payment-logos"><img class="mtf-payment-logo" src="assets/logos/applepay.svg" width="40" height="26" alt="Apple Pay"><img class="mtf-payment-logo" src="assets/logos/paypal.svg" width="40" height="26" alt="PayPal"><img class="mtf-payment-logo" src="assets/logos/mastercard.svg" width="40" height="26" alt="Mastercard"><img class="mtf-payment-logo" src="assets/logos/visa.svg" width="40" height="26" alt="Visa"><img class="mtf-payment-logo" src="assets/logos/americanexpress.svg" width="40" height="26" alt="American Express"></div>
+    </div>
+    <p class="mtf-credit" data-sample>Template by The Conversion Brands. <a class="mtf-credit-link" href="https://theconversionbrands.com/">Want it built for you?</a></p>
+  </div>
+</footer>
+<!-- /footer -->
+
+<div class="mtf-sticky-bar" data-funnel-section="sticky" data-funnel-sale>
+  <div class="mtf-sticky-bar-inner">
+    <div class="mtf-sticky-bar-offer">
+      <p class="mtf-label-sm mtf-is-accent mtf-in-sticky-bar">Black Friday offer</p>
+      <div class="mtf-sticky-bar-prices">
+        <p class="mtf-sticky-bar-strikethrough" data-funnel-price="compare-at">$997</p>
+        <p class="mtf-sticky-bar-value" data-funnel-price="price">$497</p>
+      </div>
+    </div>
+    <a href="#checkout" class="mtf-button mtf-is-sm"><div class="mtf-button-label mtf-is-sm">Claim My Offer</div></a>
+  </div>
+</div>
+<!-- /sticky -->
+
+<script src="funnel.config.js"></script>
+<script src="vendor/intl-tel-input-25.3.1/js/intlTelInput.min.js"></script>
+<script src="js/funnel.js"></script>
+</body>
+</html>

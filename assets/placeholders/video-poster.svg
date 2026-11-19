@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<rect x="1" y="1" width="1278" height="718" rx="0" fill="#ebe8dc" stroke="#b9b5a5" stroke-width="2" stroke-dasharray="10 8"/>
+<text x="50%" y="349.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#5f5d55">Your video</text>
+<text x="50%" y="400.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#5f5d55">paste your video embed into the hero (see SETUP.md)</text>
+</svg>

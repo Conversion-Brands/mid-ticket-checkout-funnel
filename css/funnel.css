@@ -202,6 +202,12 @@ button { cursor: pointer; }
 .mtf-card-content.mtf-is-step { text-align: center; flex: 0 0 auto; row-gap: 12px; width: 100%; min-width: auto; }
 .mtf-card-content.mtf-is-bonus { flex: 0 0 auto; row-gap: 8px; width: 100%; min-width: auto; }
 .mtf-card-content.mtf-is-bonus.mtf-is-v2 { max-width: 334px; }
+.mtf-toggle { border-radius: 999px; flex: 0 0 auto; width: 40px; height: 23px; position: relative; overflow: hidden; }
+.mtf-toggle.mtf-is-on { width: 42px; height: 25px; }
+.mtf-toggle-track { background-color: var(--mtf-ink-2); border-radius: 999px; width: 100%; height: 100%; position: absolute; top: 0%; left: 0%; }
+.mtf-toggle-track.mtf-is-on { background-color: var(--mtf-accent-deep); }
+.mtf-toggle-knob { background-color: var(--mtf-surface); border-radius: 999px; width: 52.94%; height: 87.1%; position: absolute; top: 6.45%; left: 3.92%; box-shadow: var(--mtf-ink-a12) 0px 3px 7px; }
+.mtf-toggle-knob.mtf-is-on { left: 43.14%; }
 .mtf-card-list { flex-direction: column; flex: 0 0 auto; align-items: flex-start; row-gap: 16px; width: 100%; display: flex; }
 .mtf-card-title { flex-direction: column; flex: 0 0 auto; align-items: flex-start; row-gap: 8px; width: 100%; display: flex; }
 .mtf-check-list { flex-direction: column; flex: 0 0 auto; align-items: flex-start; row-gap: 8px; display: flex; }
@@ -609,3 +615,51 @@ button { cursor: pointer; }
   .mtf-sticky-bar-value, .mtf-sticky-bar-strikethrough { font-size: 22px; line-height: 24px; }
   .mtf-testimonial-quote-text { font-size: 16px; line-height: 24px; }
 }
+
+/* ---- Template components (added for the template; hand-maintained) ---- */
+.mtf-icon { color: var(--mtf-accent); width: 16px; height: 16px; }
+.mtf-icon.mtf-is-muted { color: var(--mtf-muted); }
+.mtf-icon.mtf-is-inverse { color: var(--mtf-accent-ink); }
+.mtf-icon.mtf-is-ink { color: var(--mtf-ink); }
+.mtf-icon.mtf-is-20 { width: 20px; height: 20px; }
+.mtf-icon.mtf-is-24 { width: 24px; height: 24px; }
+.mtf-icon.mtf-is-28 { width: 28px; height: 28px; }
+.mtf-icon.mtf-is-14 { width: 14px; height: 14px; }
+.mtf-span-italic.mtf-is-plain { text-decoration-line: none; }
+.mtf-checkout-step { flex-direction: column; align-items: flex-start; row-gap: 32px; width: 100%; display: flex; }
+.mtf-field-error { color: var(--mtf-danger); text-align: left; margin-top: -4px; font-family: var(--mtf-font-body); font-size: 14px; line-height: 20px; }
+.mtf-consent { color: var(--mtf-ink-2); text-align: left; column-gap: 10px; align-items: flex-start; width: 100%; font-family: var(--mtf-font-body); font-size: 14px; line-height: 20px; display: flex; }
+.mtf-consent-box { accent-color: var(--mtf-accent); flex: 0 0 auto; width: 18px; height: 18px; margin-top: 1px; }
+.mtf-pay-summary { background-color: var(--mtf-surface); color: var(--mtf-ink); border: 1px solid var(--mtf-line); border-radius: 8px; justify-content: space-between; align-items: center; column-gap: 12px; width: 100%; padding: 12px 16px; font-family: var(--mtf-font-body); font-size: 16px; line-height: 24px; display: flex; }
+.mtf-pay-summary-text { min-width: 0px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mtf-pay-edit { color: var(--mtf-accent); white-space: nowrap; background-color: transparent; border: 0px; padding: 0px; font-family: var(--mtf-font-body); font-weight: 500; text-decoration: underline; }
+.mtf-pay-embed { width: calc(100% + 8px); min-height: 120px; margin-left: -4px; margin-right: -4px; }
+.mtf-pay-notice { background-color: var(--mtf-danger-bg); color: var(--mtf-danger-ink); text-align: left; border: 1px solid var(--mtf-danger-a35); border-radius: 8px; width: 100%; padding: 12px 16px; font-family: var(--mtf-font-body); font-size: 15px; line-height: 22px; }
+.mtf-pay-missing { background-color: var(--mtf-surface); color: var(--mtf-ink-2); text-align: left; border: 1px dashed var(--mtf-line); border-radius: 12px; width: 100%; padding: 20px; font-family: var(--mtf-font-body); font-size: 15px; line-height: 22px; }
+.mtf-offer-ended { background-color: var(--mtf-surface); text-align: center; border: 1px solid var(--mtf-line-soft); border-radius: 16px; flex-direction: column; align-items: center; row-gap: 12px; width: 100%; padding: 32px 24px; display: flex; }
+.mtf-trust-label { color: var(--mtf-ink); text-align: center; letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--mtf-font-body); font-size: 10px; font-weight: 600; line-height: 12px; }
+.mtf-trust-label.mtf-is-inverse { color: var(--mtf-inverse-muted); }
+.mtf-secure-note { color: var(--mtf-ink-2); justify-content: center; align-items: center; column-gap: 6px; font-family: var(--mtf-font-body); font-size: 14px; font-weight: 500; line-height: 20px; display: flex; }
+.mtf-video { position: relative; }
+.mtf-video-poster { object-fit: cover; width: 100%; height: 100%; display: block; }
+.mtf-video-play { background-color: var(--mtf-accent); color: var(--mtf-accent-ink); border-radius: 999px; justify-content: center; align-items: center; width: 76px; height: 76px; display: flex; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: var(--mtf-shadow-card); }
+.mtf-video-frame { border: 0px; width: 100%; height: 100%; display: block; }
+.mtf-polaroid { background-color: var(--mtf-surface); padding: 7px 7px 26px; box-shadow: 0 10px 24px var(--mtf-ink-a12); }
+.mtf-polaroid.mtf-is-left { transform: rotate(-7deg); }
+.mtf-polaroid.mtf-is-right { transform: rotate(6deg); }
+.mtf-polaroid-photo { object-fit: cover; width: 100%; height: 100%; display: block; }
+.mtf-sticky-bar-prices { align-items: baseline; column-gap: 8px; display: flex; }
+.mtf-text-legal.mtf-is-inverse-tertiary, .mtf-text-xs.mtf-is-inverse-tertiary { color: var(--mtf-inverse-muted); }
+.mtf-credit { color: var(--mtf-inverse-muted); font-family: var(--mtf-font-body); font-size: 13px; line-height: 20px; }
+.mtf-credit-link { color: var(--mtf-inverse-ink); text-decoration: underline; }
+.mtf-carousel-dot { background-color: var(--mtf-dot); border: 0px; border-radius: 999px; width: 10px; height: 10px; padding: 0px; }
+.mtf-carousel-dot.mtf-is-active { background-color: var(--mtf-accent); }
+@media screen and (max-width: 767px) {
+  .mtf-checkout-step { row-gap: 24px; }
+  .mtf-carousel-dot { width: 8px; height: 8px; }
+}
+@media screen and (max-width: 479px) {
+  .mtf-carousel-dot { width: 6px; height: 6px; }
+}
+.mtf-text-lg.mtf-is-medium.mtf-in-audience { white-space: normal; flex: 1 1 0px; width: auto; min-width: 0px; }
+.mtf-text-lg.mtf-is-medium.mtf-is-inverse.mtf-in-audience { white-space: normal; flex: 1 1 0px; width: auto; min-width: 0px; }
