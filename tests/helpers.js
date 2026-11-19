@@ -35,7 +35,8 @@ async function withConfig(page, overrides) {
 }
 
 // Fulfil https://hooks.test/** and record every request.
-// opts.status: { '/path': code } answers that path with the code; opts.hang: ['/path'] never answers.
+// opts.status: { '/path': code } answers that path with the code; opts.hang: ['/path'] never answers;
+// opts.abort: ['/path'] fails like a network error.
 async function catchWebhooks(page, opts) {
   opts = opts || {};
   const seen = [];
@@ -44,6 +45,7 @@ async function catchWebhooks(page, opts) {
     const p = new URL(req.url()).pathname;
     seen.push({ url: req.url(), method: req.method(), headers: req.headers(), body: req.postData() });
     if ((opts.hang || []).indexOf(p) !== -1) return; // never answered
+    if ((opts.abort || []).indexOf(p) !== -1) return route.abort('failed');
     route.fulfill({ status: (opts.status || {})[p] || 200, body: 'ok', headers: { 'access-control-allow-origin': '*' } });
   });
   return seen;
@@ -92,4 +94,13 @@ function dropSection(html, name) {
   return html.replace(re, '');
 }
 
-module.exports = { withConfig, catchWebhooks, stubWhop, blockStorage, rewritePage, dropSection, sampleConfig, deepMerge, ROOT };
+// Fill step 1 with a valid lead (US number in the national format the picker expects).
+async function fillLead(page, lead) {
+  lead = Object.assign({ name: 'Zoë O\'Brien', email: 'a+b@x.io', phone: '2015550123' }, lead || {});
+  await page.fill('#mtf-name', lead.name);
+  await page.fill('#mtf-email', lead.email);
+  if (lead.phone !== null && await page.locator('#mtf-phone').isVisible()) await page.fill('#mtf-phone', lead.phone);
+  return lead;
+}
+
+module.exports = { fillLead, withConfig, catchWebhooks, stubWhop, blockStorage, rewritePage, dropSection, sampleConfig, deepMerge, ROOT };

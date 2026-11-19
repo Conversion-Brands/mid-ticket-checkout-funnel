@@ -151,6 +151,207 @@
     if (link && cfg.deadline.endedLink) { link.href = cfg.deadline.endedLink; link.hidden = false; }
   }
 
+  // ---------------------------------------------------------------- storage (private mode and blocked site data must not break the page)
+  function store(kind, key, value) { try { window[kind].setItem(key, value); } catch (e) { /* storage unavailable */ } }
+  function load(kind, key) { try { return window[kind].getItem(key); } catch (e) { return null; } }
+
+  // ---------------------------------------------------------------- lead data helpers
+  Funnel.firstName = function (name) { return String(name || '').trim().split(/\s+/)[0] || ''; };
+  Funnel.regionFromLocales = function (locales) {
+    for (var i = 0; i < (locales || []).length; i++) {
+      var m = /[-_]([a-z]{2})$/i.exec(locales[i] || '');
+      if (m) return m[1].toLowerCase();
+    }
+    return 'us';
+  };
+  Funnel.fillTokens = function (text, lead, encode) {
+    return String(text == null ? '' : text).replace(/\{(email|name|first_name|phone)\}/g, function (m, k) {
+      var v = lead && lead[k] != null ? String(lead[k]) : '';
+      return encode ? encodeURIComponent(v) : v;
+    });
+  };
+  // UTM values: a visit with any utm_ parameter replaces all of them; otherwise the last stored set is kept
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  var utm = (function () {
+    var params = new URLSearchParams(location.search), fresh = {}, any = false;
+    UTM_KEYS.forEach(function (k) { var v = params.get(k); fresh[k] = v || ''; if (v) any = true; });
+    if (any) { store('localStorage', 'mtf_utm', JSON.stringify(fresh)); return fresh; }
+    var saved = null;
+    try { saved = JSON.parse(load('localStorage', 'mtf_utm') || 'null'); } catch (e) { saved = null; }
+    var out = {};
+    UTM_KEYS.forEach(function (k) { out[k] = saved && saved[k] ? String(saved[k]) : ''; });
+    return out;
+  })();
+  var sessionId = load('sessionStorage', 'mtf_session_id');
+  if (!sessionId) {
+    sessionId = Math.random().toString(36).slice(2) + Date.now().toString(36);
+    store('sessionStorage', 'mtf_session_id', sessionId);
+  }
+  Funnel.leadPayload = function (lead) {
+    var p = new URLSearchParams(), o = cfg.offer;
+    [['name', lead.name], ['first_name', lead.first_name], ['email', lead.email], ['phone', lead.phone], ['country', lead.country],
+      ['offer', o.name], ['price', String(o.price)], ['currency', o.currency]].forEach(function (kv) { p.append(kv[0], kv[1] == null ? '' : String(kv[1])); });
+    UTM_KEYS.forEach(function (k) { p.append(k, utm[k]); });
+    p.append('session_id', sessionId);
+    p.append('page_url', location.href);
+    p.append('referrer', document.referrer || '');
+    p.append('submitted_at', new Date().toISOString());
+    return p;
+  };
+  // Fire and forget: a simple form-encoded request (no CORS preflight) to every webhook. Never awaited.
+  Funnel.sendLead = function (lead) {
+    cfg.leads.webhooks.forEach(function (url) {
+      var fail = function () { warn('could not reach the lead webhook ' + url + ' (leads.webhooks in funnel.config.js).'); };
+      try {
+        fetch(url, { method: 'POST', mode: 'no-cors', keepalive: true, body: Funnel.leadPayload(lead) }).catch(fail);
+      } catch (e) { fail(); }
+    });
+  };
+
+  // ---------------------------------------------------------------- checkout step 1: details
+  var form = $('[data-funnel-form]');
+  var detailsStep = $('[data-funnel-step="details"]');
+  var paymentStep = $('[data-funnel-step="payment"]');
+  var phone = form && $('input[name="phone"]', form);
+  var phoneWrap = $('[data-funnel-phone]');
+  var consent = $('[data-funnel-consent]');
+  var iti = null;
+  if (consent) consent.hidden = !cfg.leads.consentCheckbox;
+  if (!cfg.leads.phone) {
+    if (phoneWrap) phoneWrap.hidden = true;
+    phone = null;
+  }
+  if (phone && window.intlTelInput) {
+    var itiScript = $('script[src*="intlTelInput"]');
+    var utilsUrl = itiScript ? itiScript.src.replace(/intlTelInput(\.min)?\.js.*$/, 'utils.js') : '';
+    iti = window.intlTelInput(phone, {
+      initialCountry: Funnel.regionFromLocales(navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]),
+      separateDialCode: true,
+      countrySearch: true,
+      dropdownContainer: document.body, // keeps the country search box out of the form data
+      autoPlaceholder: 'off',
+      loadUtils: utilsUrl ? function () { return import(utilsUrl); } : undefined
+    });
+    var padPhone = function () {
+      var b = phone.parentNode.querySelector('.iti__selected-country');
+      if (b && b.offsetWidth) phone.style.paddingLeft = (b.offsetWidth + 12) + 'px';
+    };
+    phone.addEventListener('countrychange', padPhone);
+    setTimeout(padPhone, 0);
+    window.addEventListener('load', padPhone);
+  }
+  function wrapOf(input) { return input && input.closest('.mtf-input'); }
+  function setError(key, msg, input) {
+    var el = $('[data-funnel-error="' + key + '"]');
+    if (el) { el.textContent = msg || ''; el.hidden = !msg; if (msg) el.setAttribute('role', 'alert'); }
+    var w = wrapOf(input);
+    if (w) w.classList.toggle('mtf-is-error', !!msg);
+  }
+  function field(name) { return form ? form.querySelector('[name="' + name + '"]') : null; }
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function phoneValid() {
+    if (!phone.value.trim()) return false;
+    var v = iti && typeof iti.isValidNumber === 'function' ? iti.isValidNumber() : null;
+    return v === true || (v === null && phone.value.replace(/\D/g, '').length >= 6); // null: number rules still loading
+  }
+  function validate() {
+    var name = field('name'), email = field('email'), first = null;
+    var checks = [
+      ['name', name, name && name.value.trim(), 'Please enter your name'],
+      ['email', email, email && EMAIL.test(email.value.trim()), 'Please enter a valid email address'],
+      ['phone', phone, !phone || phoneValid(), 'Please enter a valid phone number'],
+      ['consent', field('consent'), !cfg.leads.consentCheckbox || (field('consent') && field('consent').checked), 'Please tick the box to continue']
+    ];
+    checks.forEach(function (c) {
+      setError(c[0], c[2] ? '' : c[3], c[1]);
+      if (!c[2] && !first) first = c[1];
+    });
+    if (first && first.focus) first.focus();
+    return !first;
+  }
+  if (form) {
+    ['name', 'email', 'consent'].forEach(function (k) {
+      var el = field(k);
+      if (el) el.addEventListener(k === 'consent' ? 'change' : 'input', function () { setError(k, '', el); });
+    });
+    if (phone) ['input', 'countrychange'].forEach(function (ev) { phone.addEventListener(ev, function () { setError('phone', '', phone); }); });
+  }
+
+  function setStep(n) {
+    $$('[data-funnel-stepper] [data-step]').forEach(function (s) {
+      var on = Number(s.getAttribute('data-step')) <= n;
+      s.classList.toggle('mtf-is-active', on);
+      $$('.mtf-stepper-step-number', s).forEach(function (x) { x.classList.toggle('mtf-is-active', on); });
+    });
+  }
+  function setHidden(name, value) {
+    var el = form.querySelector('input[type="hidden"][name="' + name + '"]');
+    if (!el) { el = document.createElement('input'); el.type = 'hidden'; el.name = name; form.appendChild(el); }
+    el.value = value;
+  }
+
+  var busy = false;
+  function readLead() {
+    var name = field('name').value.trim(), email = field('email').value.trim(), full = '', country = '';
+    if (phone) {
+      if (iti) {
+        country = ((iti.getSelectedCountryData() || {}).iso2 || '').toUpperCase();
+        full = iti.getNumber() || '';
+        if (!full) { var dial = (iti.getSelectedCountryData() || {}).dialCode; full = (dial ? '+' + dial : '') + phone.value.replace(/\D/g, ''); }
+      } else full = phone.value.trim();
+    }
+    return { name: name, first_name: Funnel.firstName(name), email: email, phone: full, country: country };
+  }
+  function submitDetails(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    if (busy || !form || !detailsStep || detailsStep.hidden) return;
+    if (!validate()) return;
+    busy = true;
+    var lead = readLead();
+    var webflowForm = form.closest('.w-form');
+    if (webflowForm) { // Webflow stores the lead and runs its own form integrations
+      Funnel.leadPayload(lead).forEach(function (v, k) { if (['name', 'email', 'phone'].indexOf(k) === -1) setHidden(k, v); });
+      if (phone && lead.phone) phone.value = lead.phone;
+      if (form.requestSubmit) form.requestSubmit(); else form.submit();
+      if (iti && lead.phone) iti.setNumber(lead.phone); // show the national format again
+    }
+    Funnel.sendLead(lead);
+    track('lead_submit', { offer: cfg.offer.name });
+    openPayment(lead);
+  }
+  if (form) {
+    $$('[data-funnel-continue]').forEach(function (btn) { btn.addEventListener('click', submitDetails); });
+    form.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'checkbox') submitDetails(e);
+    });
+    if (!form.closest('.w-form')) form.addEventListener('submit', submitDetails); // never reload the page
+  }
+
+  // ---------------------------------------------------------------- checkout step 2: payment
+  var openCheckout = function () { // replaced by the providers below
+    var missing = $('[data-funnel-checkout-missing]');
+    if (missing) missing.hidden = false;
+  };
+  function openPayment(lead) {
+    store('sessionStorage', 'mtf_first_name', lead.first_name); // the welcome page greets the buyer by first name
+    var summary = $('[data-funnel-summary]');
+    if (summary) summary.textContent = lead.email;
+    if (detailsStep) detailsStep.hidden = true;
+    if (paymentStep) paymentStep.hidden = false;
+    setStep(2); // the page stays where the visitor is: no scroll here
+    openCheckout(lead);
+  }
+  $$('[data-funnel-edit]').forEach(function (btn) {
+    onActivate(btn, function (e) {
+      e.preventDefault();
+      busy = false;
+      if (paymentStep) paymentStep.hidden = true;
+      setStep(1);
+      if (state.ended && cfg.deadline.afterEnd !== 'keep') { showEnded(); return; }
+      if (detailsStep) detailsStep.hidden = false;
+    });
+  });
+
   // @@MODULES@@
 
   // ---------------------------------------------------------------- template placeholders banner
