@@ -15,8 +15,7 @@ Adapt the existing template. Do not rebuild or redesign it.
 HOW YOU WORK
 ====================================================================
 1. First, look around without changing anything.
-   Get the repository (git clone, "Import from GitHub", or download the ZIP). It is invite only, so use
-   the GitHub account that received the invite. Read README.md, SETUP.md
+   Get the repository (git clone, "Import from GitHub", or download the ZIP). Read README.md, SETUP.md
    (the full manual), docs/GRAPHICS.md, docs/CHECKOUTS.md, docs/LEADS.md and docs/DEPLOY.md.
    Then tell me in five lines or fewer what you found: the pages, the settings file, the checkout
    options, how leads are sent, and the graphics.
