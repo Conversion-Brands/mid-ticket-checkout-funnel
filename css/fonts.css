@@ -1,0 +1,6 @@
+/* Self-hosted fonts (SIL Open Font License, texts in assets/fonts/). Made by scripts/fetch-fonts.mjs. */
+@font-face { font-family: 'Geist'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('../assets/fonts/geist-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap; src: url('../assets/fonts/instrumentserif-italic-400.woff2') format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/instrumentserif-normal-400.woff2') format('woff2'); }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('../assets/fonts/caveat-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Mrs Saint Delafield'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/mrssaintdelafield-normal-400.woff2') format('woff2'); }

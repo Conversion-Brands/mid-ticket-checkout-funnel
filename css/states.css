@@ -1,0 +1,65 @@
+/*
+  STATES: rules the scripts switch on and off (hidden blocks, open FAQ items, the checkout steps,
+  the sticky bar, the marquee animation, the phone picker). In Webflow this file goes into the page
+  head code, so the Designer keeps showing every block.
+*/
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+/* Phone country picker (intl-tel-input), styled like the other inputs */
+#checkout .mtf-input.mtf-is-phone .iti { display: block; flex: 1 1 0; min-width: 0; width: 100%; }
+#checkout .mtf-input.mtf-is-phone .iti__selected-country { height: 24px; padding: 0 12px 0 0; border-right: 1px solid var(--mtf-line); background: transparent !important; font-family: var(--mtf-font-body); }
+#checkout .mtf-input.mtf-is-phone .iti__selected-country-primary { padding: 0; background: transparent !important; }
+#checkout .mtf-input.mtf-is-phone .iti__selected-dial-code { margin-left: 8px; color: var(--mtf-ink); font-size: 16px; line-height: 24px; }
+#checkout .mtf-input.mtf-is-phone .iti__arrow { margin-left: 6px; border-top-color: var(--mtf-muted); }
+#checkout .mtf-input.mtf-is-phone .iti__arrow--up { border-top-color: transparent; border-bottom-color: var(--mtf-muted); }
+.iti__dropdown-content { background: var(--mtf-surface); border: 1px solid var(--mtf-line-soft); border-radius: var(--mtf-radius-md); overflow: hidden; box-shadow: var(--mtf-shadow-card); color: var(--mtf-ink); font-family: var(--mtf-font-body); text-align: left; }
+.iti__search-input { margin: 0; padding: 12px 16px; border: 0; border-bottom: 1px solid var(--mtf-line-soft); outline: 0; font-family: inherit; font-size: 16px; line-height: 24px; }
+.iti__country { padding: 10px 16px; font-size: 15px; line-height: 20px; }
+.iti__country.iti__highlight { background: var(--mtf-bg); }
+.iti__dial-code { color: var(--mtf-muted); }
+
+/* Form */
+#checkout .w-form { margin: 0; }
+#checkout .w-form-done, #checkout .w-form-fail { display: none !important; }
+.mtf-input-field::placeholder { color: var(--mtf-muted); opacity: 1; }
+.mtf-input:focus-within { border-color: var(--mtf-accent); box-shadow: var(--mtf-shadow-pop); }
+#checkout .mtf-input.mtf-is-error { border-color: var(--mtf-danger); box-shadow: 0 0 0 4px var(--mtf-danger-a12); }
+[data-funnel-continue][aria-disabled="true"] { opacity: .6; pointer-events: none; }
+
+/* FAQ */
+[data-funnel-faq-tab], [data-funnel-faq-q] { cursor: pointer; }
+[data-funnel-faq-item]:not(.mtf-is-open) [data-funnel-faq-a] { display: none; }
+
+/* Marquee */
+[data-funnel-marquee-row] { will-change: transform; animation: mtf-marquee 75s linear infinite; }
+[data-funnel-marquee-row].mtf-is-reverse { animation-direction: reverse; }
+.mtf-marquee:hover [data-funnel-marquee-row] { animation-play-state: paused; }
+@keyframes mtf-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Testimonial carousel */
+[data-funnel-carousel] { scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+[data-funnel-carousel]::-webkit-scrollbar { display: none; }
+[data-funnel-carousel] > * { scroll-snap-align: start; }
+@media (max-width: 991px) { [data-funnel-carousel] { overflow-x: auto; width: 100%; align-self: stretch; } }
+[data-funnel-carousel-prev], [data-funnel-carousel-next] { cursor: pointer; transition: opacity .2s; }
+[data-funnel-carousel-prev].mtf-is-disabled, [data-funnel-carousel-next].mtf-is-disabled { opacity: .35; cursor: default; }
+[data-funnel-carousel-prev] img { transform: rotate(180deg); }
+[data-funnel-carousel-dots] > * { cursor: pointer; transition: background-color .2s; }
+
+/* Sticky offer bar: off screen until the script adds mtf-is-visible */
+.mtf-sticky-bar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); transform: translate3d(0, calc(100% + 32px), 0); visibility: hidden; transition: transform .45s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .45s; }
+@media (max-width: 767px) { .mtf-sticky-bar { padding-bottom: calc(10px + env(safe-area-inset-bottom)); } }
+.mtf-sticky-bar.mtf-is-visible { transform: none; visibility: visible; transition: transform .45s cubic-bezier(.22, 1, .36, 1), visibility 0s; }
+
+/* Video facade */
+[data-funnel-video] { cursor: pointer; }
+
+/* Template placeholders (the banner shows how many are left; clicking it outlines them) */
+#mtf-sample-banner { position: fixed; left: 16px; bottom: 16px; z-index: 2000; padding: 10px 14px; border: 0; border-radius: var(--mtf-radius-pill); background: var(--mtf-danger); color: var(--mtf-surface); font: 500 14px/20px var(--mtf-font-body); box-shadow: var(--mtf-shadow-card); }
+html.mtf-show-samples [data-sample] { outline: 2px dashed var(--mtf-danger); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-funnel-marquee-row] { animation: none; }
+  .mtf-sticky-bar, .mtf-sticky-bar.mtf-is-visible { transition: none; }
+}

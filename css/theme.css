@@ -1,0 +1,84 @@
+/*
+  THEME: every colour, font and shadow on both pages comes from these tokens.
+  To restyle the funnel, change the values in the first block ("Your brand") and leave the rest:
+  the derived tokens below are mixed from them automatically.
+  Fonts: any Google Font (Open Font License) works. Download it into assets/fonts/ and add an
+  @font-face rule to css/fonts.css (scripts/fetch-fonts.mjs does both), then change the --mtf-font-* lines.
+  Default theme: "Paper" (warm paper, ink-blue accent).
+*/
+:root {
+  /* ---- Your brand ---- */
+  --mtf-accent: #2b4aa8;          /* buttons, links, highlights, checkmarks */
+  --mtf-accent-ink: #ffffff;      /* text on accent buttons */
+  --mtf-accent-deep: #14234f;     /* the accent's shadow colour */
+  --mtf-bg: #f5f4ea;              /* page background (paper) */
+  --mtf-bg-2: #f3f5e9;            /* light band behind the countdown */
+  --mtf-surface: #ffffff;         /* cards, inputs */
+  --mtf-surface-2: #fbfbf1;       /* panels, pills, sticky bar */
+  --mtf-ink: #0b0b0b;             /* main text */
+  --mtf-ink-2: #404040;           /* secondary text */
+  --mtf-muted: #6b6b6b;           /* small print, old prices */
+  --mtf-line: #d6d6d6;            /* input and divider lines */
+  --mtf-line-soft: #e4e4e4;       /* card borders */
+  --mtf-dot: #dcdbd2;             /* carousel dots */
+  --mtf-warm: #5a4a2a;            /* paper vignette tint */
+  --mtf-inverse-bg: #141414;      /* footer */
+  --mtf-inverse-ink: #ffffff;
+  --mtf-inverse-muted: #a6a6a6;
+  --mtf-inverse-line: #262626;
+  --mtf-danger: #c52828;          /* errors, "beginner" badge */
+  --mtf-danger-soft: #fbe4e4;
+  --mtf-danger-ink: #8a1f1f;
+  --mtf-danger-bg: #fdf1f1;
+  --mtf-gold: #886e1e;            /* "intermediate" badge */
+  --mtf-gold-soft: #f0eada;
+
+  --mtf-font-body: 'Geist', Arial, sans-serif;
+  --mtf-font-display: 'Instrument Serif', Georgia, serif;
+  --mtf-font-hand: 'Caveat', 'Comic Sans MS', cursive;
+  --mtf-font-signature: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
+
+  --mtf-radius-sm: 8px;
+  --mtf-radius-md: 12px;
+  --mtf-radius-lg: 20px;
+  --mtf-radius-pill: 999px;
+
+  /* ---- Derived (no need to edit) ---- */
+  --mtf-highlight: var(--mtf-accent);
+  --mtf-accent-soft: color-mix(in srgb, var(--mtf-accent) 10%, var(--mtf-surface));
+  --mtf-accent-a04: color-mix(in srgb, var(--mtf-accent) 4%, transparent);
+  --mtf-accent-a10: color-mix(in srgb, var(--mtf-accent) 10%, transparent);
+  --mtf-accent-a15: color-mix(in srgb, var(--mtf-accent) 15%, transparent);
+  --mtf-accent-a20: color-mix(in srgb, var(--mtf-accent) 20%, transparent);
+  --mtf-accent-a32: color-mix(in srgb, var(--mtf-accent) 32%, transparent);
+  --mtf-accent-a00: color-mix(in srgb, var(--mtf-accent) 0%, transparent);
+  --mtf-accent-deep-a18: color-mix(in srgb, var(--mtf-accent-deep) 18%, transparent);
+  --mtf-accent-deep-a25: color-mix(in srgb, var(--mtf-accent-deep) 25%, transparent);
+  --mtf-bg-a00: color-mix(in srgb, var(--mtf-bg) 0%, transparent);
+  --mtf-bg-a25: color-mix(in srgb, var(--mtf-bg) 25%, transparent);
+  --mtf-bg-a30: color-mix(in srgb, var(--mtf-bg) 30%, transparent);
+  --mtf-bg-a55: color-mix(in srgb, var(--mtf-bg) 55%, transparent);
+  --mtf-surface-a00: color-mix(in srgb, var(--mtf-surface) 0%, transparent);
+  --mtf-surface-a22: color-mix(in srgb, var(--mtf-surface) 22%, transparent);
+  --mtf-surface-a65: color-mix(in srgb, var(--mtf-surface) 65%, transparent);
+  --mtf-surface-a70: color-mix(in srgb, var(--mtf-surface) 70%, transparent);
+  --mtf-surface-2-a94: color-mix(in srgb, var(--mtf-surface-2) 94%, transparent);
+  --mtf-ink-a41: color-mix(in srgb, var(--mtf-ink) 41%, transparent);
+  --mtf-ink-a12: color-mix(in srgb, var(--mtf-ink) 12%, transparent);
+  --mtf-warm-a00: color-mix(in srgb, var(--mtf-warm) 0%, transparent);
+  --mtf-warm-a02: color-mix(in srgb, var(--mtf-warm) 2%, transparent);
+  --mtf-warm-a09: color-mix(in srgb, var(--mtf-warm) 9%, transparent);
+  --mtf-danger-a12: color-mix(in srgb, var(--mtf-danger) 12%, transparent);
+  --mtf-danger-a35: color-mix(in srgb, var(--mtf-danger) 35%, transparent);
+  --mtf-shadow-card: 0 16px 40px var(--mtf-ink-a12);
+  --mtf-shadow-pop: 0 0 0 4px var(--mtf-accent-a20);
+  --mtf-grid-line: color-mix(in srgb, var(--mtf-accent) 11%, transparent); /* graph-paper lines */
+
+  /* confetti on the welcome page */
+  --mtf-confetti-1: var(--mtf-accent);
+  --mtf-confetti-2: color-mix(in srgb, var(--mtf-accent) 70%, var(--mtf-surface));
+  --mtf-confetti-3: color-mix(in srgb, var(--mtf-accent) 40%, var(--mtf-surface));
+  --mtf-confetti-4: color-mix(in srgb, var(--mtf-accent) 20%, var(--mtf-surface));
+  --mtf-confetti-5: var(--mtf-gold);
+  --mtf-confetti-6: color-mix(in srgb, var(--mtf-gold) 45%, var(--mtf-surface));
+}
