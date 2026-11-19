@@ -4,3 +4,6 @@ playwright-report/
 local/
 .superpowers/
 .DS_Store
+
+# graphics kit: PNGs the Figma scripts export locally
+graphics/figma/exports/

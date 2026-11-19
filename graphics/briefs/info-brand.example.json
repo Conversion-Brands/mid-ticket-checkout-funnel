@@ -1,0 +1,67 @@
+{
+  "brand": "Northstar Coaching",
+  "accent": "#E8A33D",
+  "coaching": {
+    "host": "Dana Lee",
+    "initials": "NC",
+    "title": "Monday Hot Seat",
+    "timer": "0:42"
+  },
+  "modules": {
+    "brandName": "Northstar Coaching",
+    "folders": [
+      {
+        "title": "Start Here",
+        "count": "Module 1",
+        "active": true
+      },
+      {
+        "title": "Offer Builder",
+        "count": "Module 2"
+      },
+      {
+        "title": "Content Engine",
+        "count": "Module 3"
+      },
+      {
+        "title": "Client Calls",
+        "count": "Module 4"
+      }
+    ]
+  },
+  "community": {
+    "members": [
+      {
+        "name": "Dana Lee",
+        "role": "Head coach",
+        "status": "Online"
+      },
+      {
+        "name": "Chris P.",
+        "role": "Community manager",
+        "status": "Away"
+      },
+      {
+        "name": "Morgan T.",
+        "role": "Posted a win",
+        "status": "Online"
+      },
+      {
+        "name": "Sam R.",
+        "role": "New member",
+        "status": "Offline"
+      }
+    ]
+  },
+  "support": {
+    "customer": "Can you look over my offer page before launch?",
+    "reply1": "On it! Here are my notes:",
+    "link": "Open notes",
+    "reply2": "Want to book a quick call?",
+    "linkColor": "#E8A33D"
+  },
+  "oneOnOne": {
+    "name": "You"
+  },
+  "server": "http://localhost:9231/figma"
+}

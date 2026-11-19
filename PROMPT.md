@@ -138,7 +138,8 @@ Show only graphics for things I actually sell, and keep their style, size and pl
 
 The graphics in assets/graphics/ show a made-up brand ("Northstar"), so none may stay as they are.
 For each graphic I need, choose one with me:
-- if docs/GRAPHICS.md links the editable Figma templates, tailor it there and export at 2x;
+- tailor it in the editable Figma templates and export at 2x (graphics/README.md: I do it by hand,
+  or you fill them for me through the Figma Desktop Bridge if I have it set up);
 - replace it with my own screenshot (best proof, if I have one);
 - remove it.
 

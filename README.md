@@ -61,6 +61,7 @@ A cloneable Webflow version is on its way. This page will link to it.
 | `PROMPT.md` | the build prompt for your AI tool |
 | `SETUP.md` | the full manual (for you or your AI) |
 | `assets/graphics/` | sample graphics for each kind of deliverable (course, coaching, 1:1, community, support, bonuses) |
+| `graphics/` | the editable [Figma templates](https://www.figma.com/design/3r8j4H9unrBJ7k72I6wA5k/Info-Funnel-Graphic-Templates) for those graphics, and a kit that lets your AI fill them for your offer |
 | `docs/` | lead destinations, checkout providers, deploying and tracking |
 | `tests/` | the maintainer's automated tests (you don't need them) |
 

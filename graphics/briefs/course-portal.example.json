@@ -1,0 +1,76 @@
+{
+  "brand": "Northstar Launch Lab",
+  "server": "http://localhost:9231/figma",
+  "brandHex": "#2B4AA8",
+  "logo": {
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"560\" height=\"120\" viewBox=\"0 0 560 120\"><circle cx=\"34\" cy=\"60\" r=\"20\" fill=\"#2B4AA8\"/><text x=\"72\" y=\"75\" font-family=\"Geist\" font-weight=\"600\" font-size=\"44\" fill=\"#1E1B18\">Northstar</text></svg>"
+  },
+  "course": {
+    "name": "Northstar Launch Lab",
+    "tagline": "Launch your first online course in 6 weeks",
+    "shortName": "Launch Lab"
+  },
+  "courseIcon": "graduation-cap",
+  "modules": [
+    {
+      "name": "Start Here",
+      "description": "Get set up and plan your next six weeks.",
+      "icon": "flag"
+    },
+    {
+      "name": "Shape Your Offer",
+      "description": "Pick who you help and what your course solves.",
+      "icon": "target"
+    },
+    {
+      "name": "Plan Your Course",
+      "description": "Turn what you know into a clear lesson outline.",
+      "icon": "list-checks"
+    },
+    {
+      "name": "Record Your Lessons",
+      "description": "Film clear lessons with the gear you already have.",
+      "icon": "video"
+    },
+    {
+      "name": "Build Your Course Page",
+      "description": "Build a simple page that explains your course.",
+      "icon": "layout-template"
+    },
+    {
+      "name": "Write Your Launch Emails",
+      "description": "Write the emails that announce your launch.",
+      "icon": "mail"
+    },
+    {
+      "name": "Launch Week",
+      "description": "Open the doors and run your launch day by day.",
+      "icon": "rocket"
+    },
+    {
+      "name": "Your First Students",
+      "description": "Welcome new students and help them get started.",
+      "icon": "users"
+    }
+  ],
+  "lesson": {
+    "number": "Lesson 2.1:",
+    "title": "Choosing Who You Help",
+    "progress": 40
+  },
+  "post": {
+    "title": "Getting Started with Northstar Launch Lab",
+    "subtitle": "Your first steps to launching your online course.",
+    "author": "Northstar Team",
+    "meta": "Course team · 2 days ago"
+  },
+  "community": {
+    "prompt": "Share a win or ask the community a question...",
+    "replyPrompt": "Share your thoughts about this lesson..."
+  },
+  "cta": "Enroll Now",
+  "export": {
+    "scale": 2,
+    "prefix": "northstar"
+  }
+}

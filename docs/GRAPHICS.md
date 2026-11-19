@@ -31,7 +31,7 @@ The three "How it works" step cards on the sales page are not deliverables, so t
 ## Tailoring them to your brand
 
 You have three options:
-- **Edit the Figma templates.** The editable Figma versions of every graphic (course portal, call cards, community, support chat, product box) are listed at the bottom of this page when they are published. Duplicate the file, then change:
+- **Edit the Figma templates.** Every graphic has an editable template in the free Figma file [Info Funnel Graphic Templates](https://www.figma.com/design/3r8j4H9unrBJ7k72I6wA5k/Info-Funnel-Graphic-Templates). Duplicate it to your drafts, then change (by hand, or let your AI do it with the kit in [`graphics/`](../graphics/README.md)):
   - the text: names, course title, module names, chat lines;
   - the accent colour;
   - the logo.
@@ -48,4 +48,6 @@ The sample graphics use grey silhouettes, never photos. If you put real faces or
 
 ## Editable Figma templates
 
-Coming soon: a public Figma file with every template in this bundle.
+Figma file: [Info Funnel Graphic Templates](https://www.figma.com/design/3r8j4H9unrBJ7k72I6wA5k/Info-Funnel-Graphic-Templates). It has a "Start here" page, every template on "Templates" and the filled-in Northstar sample on "Example".
+
+[`graphics/README.md`](../graphics/README.md) explains how to fill it in by hand, or how your AI tool fills it from a short brief and saves the results straight into `assets/graphics/`.

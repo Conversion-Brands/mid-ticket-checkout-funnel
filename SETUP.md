@@ -174,7 +174,7 @@ Never use a font the owner has no web licence for, and never put licensed font f
 - support chat;
 - bonus boxes.
 
-`docs/GRAPHICS.md` says which graphic belongs to which deliverable and where each one sits. Keep only the ones for what the owner really sells. Each one is tailored in the Figma templates, replaced with the owner's own screenshot, or removed. They show a made-up brand, so none of them may stay as it is.
+`docs/GRAPHICS.md` says which graphic belongs to which deliverable and where each one sits. Keep only the ones for what the owner really sells. Each one is tailored in the Figma templates (`graphics/README.md` has the link and the AI workflow), replaced with the owner's own screenshot, or removed. They show a made-up brand, so none of them may stay as it is.
 
 **The owner's own images:** every placeholder in `assets/placeholders/` is labelled with its size (2x, for sharp screens):
 
