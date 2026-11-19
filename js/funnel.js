@@ -501,6 +501,129 @@
     });
   });
 
+  // ---------------------------------------------------------------- FAQ: tabs and accordion (any number of items open)
+  $$('[data-funnel-faq-item]').forEach(function (item) {
+    var q = $('[data-funnel-faq-q]', item) || item;
+    var sync = function () { q.setAttribute('aria-expanded', item.classList.contains('mtf-is-open') ? 'true' : 'false'); };
+    onActivate(q, function () { item.classList.toggle('mtf-is-open'); sync(); });
+    sync();
+  });
+  var faqTabs = $$('[data-funnel-faq-tab]');
+  function selectTab(id) {
+    faqTabs.forEach(function (t) {
+      var on = t.getAttribute('data-funnel-faq-tab') === id;
+      t.classList.toggle('mtf-is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      $$('[class*="mtf-faq-tab-label"]', t).forEach(function (l) { l.classList.toggle('mtf-is-active', on); });
+    });
+    $$('[data-funnel-faq-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-funnel-faq-panel') !== id; });
+  }
+  faqTabs.forEach(function (t) { onActivate(t, function (e) { e.preventDefault(); selectTab(t.getAttribute('data-funnel-faq-tab')); }); });
+  if (faqTabs.length) selectTab(faqTabs[0].getAttribute('data-funnel-faq-tab'));
+
+  // ---------------------------------------------------------------- testimonial carousel: arrows, dots, swipe, keyboard
+  $$('[data-funnel-carousel]').forEach(function (track) {
+    var scope = track.closest('[data-funnel-section]') || document;
+    var prev = $('[data-funnel-carousel-prev]', scope), next = $('[data-funnel-carousel-next]', scope), dots = $('[data-funnel-carousel-dots]', scope);
+    var cards = Array.prototype.slice.call(track.children);
+    if (!cards.length) return;
+    var stops = [0];
+    function measure() {
+      var max = Math.max(track.scrollWidth - track.clientWidth, 0), base = cards[0].offsetLeft;
+      stops = [];
+      cards.forEach(function (c) {
+        var x = Math.min(Math.max(c.offsetLeft - base, 0), max);
+        if (!stops.length || x - stops[stops.length - 1] > 4) stops.push(x);
+      });
+    }
+    function current() {
+      var x = track.scrollLeft, best = 0;
+      stops.forEach(function (s, i) { if (Math.abs(s - x) < Math.abs(stops[best] - x)) best = i; });
+      return best;
+    }
+    function go(i) { track.scrollTo({ left: stops[Math.max(0, Math.min(stops.length - 1, i))], behavior: 'smooth' }); }
+    function render() {
+      var n = stops.length, i = current();
+      [prev, next, dots].forEach(function (el) { if (el) el.hidden = n < 2; });
+      if (dots && dots.children.length !== n) {
+        dots.innerHTML = '';
+        for (var k = 0; k < n; k++) {
+          var dot = document.createElement('div');
+          dot.setAttribute('role', 'button');
+          dot.setAttribute('tabindex', '0');
+          dot.setAttribute('aria-label', 'Show testimonial ' + (k + 1));
+          (function (k) { onActivate(dot, function () { go(k); }); })(k);
+          dots.appendChild(dot);
+        }
+      }
+      if (dots) Array.prototype.forEach.call(dots.children, function (dot, k) {
+        dot.className = k === i ? 'mtf-pagination-active' : 'mtf-pagination-dot';
+        dot.setAttribute('aria-current', k === i ? 'true' : 'false');
+      });
+      if (prev) prev.classList.toggle('mtf-is-disabled', i === 0);
+      if (next) next.classList.toggle('mtf-is-disabled', i >= n - 1);
+    }
+    if (prev) onActivate(prev, function (e) { e.preventDefault(); go(current() - 1); });
+    if (next) onActivate(next, function (e) { e.preventDefault(); go(current() + 1); });
+    var raf = 0;
+    track.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(render); }, { passive: true });
+    function refresh() { measure(); render(); }
+    window.addEventListener('resize', refresh);
+    window.addEventListener('load', refresh);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+    refresh();
+  });
+
+  // ---------------------------------------------------------------- results marquee: each row twice, for a seamless loop
+  $$('[data-funnel-marquee-row]').forEach(function (row) {
+    Array.prototype.slice.call(row.children).forEach(function (el) {
+      var c = el.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      c.removeAttribute('data-sample'); // count each sample once
+      row.appendChild(c);
+    });
+  });
+
+  // ---------------------------------------------------------------- sticky offer bar: after the checkout, hidden over the checkout and the footer
+  (function stickyBar() {
+    var bar = $('[data-funnel-section="sticky"]'), hero = $('[data-funnel-section="hero"]');
+    var checkout = document.getElementById('checkout'), footer = $('[data-funnel-section="footer"]');
+    if (!bar) return;
+    var seen = { pastHero: false, checkout: false, footer: false };
+    function show() {
+      var on = seen.pastHero && !seen.checkout && !seen.footer;
+      bar.classList.toggle('mtf-is-visible', on);
+      bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+      bar.inert = !on; // keeps the hidden button out of the tab order
+    }
+    if (!hero || !('IntersectionObserver' in window)) { show(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.target === hero) seen.pastHero = !e.isIntersecting && e.boundingClientRect.bottom <= 0;
+        else if (e.target === checkout) seen.checkout = e.isIntersecting;
+        else seen.footer = e.isIntersecting;
+      });
+      show();
+    });
+    [hero, checkout, footer].forEach(function (el) { if (el) io.observe(el); });
+    show();
+  })();
+
+  // ---------------------------------------------------------------- hero video: a poster until the visitor clicks, then the embed
+  $$('[data-funnel-video]').forEach(function (box) {
+    var tpl = $('template', box);
+    onActivate(box, function () {
+      if (!tpl || !tpl.content || !hasContent(tpl.content) || box.getAttribute('data-loaded')) return;
+      var frag = document.importNode(tpl.content, true);
+      Array.prototype.slice.call(box.children).forEach(function (c) { if (c !== tpl) box.removeChild(c); });
+      box.appendChild(frag);
+      box.setAttribute('data-loaded', 'true');
+    });
+    box.setAttribute('role', 'button');
+    box.setAttribute('tabindex', '0');
+    box.setAttribute('aria-label', 'Play the video');
+  });
+
   // @@MODULES@@
 
   // ---------------------------------------------------------------- template placeholders banner

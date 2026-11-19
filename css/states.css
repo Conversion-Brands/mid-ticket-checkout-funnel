@@ -44,7 +44,7 @@
 @media (max-width: 991px) { [data-funnel-carousel] { overflow-x: auto; width: 100%; align-self: stretch; } }
 [data-funnel-carousel-prev], [data-funnel-carousel-next] { cursor: pointer; transition: opacity .2s; }
 [data-funnel-carousel-prev].mtf-is-disabled, [data-funnel-carousel-next].mtf-is-disabled { opacity: .35; cursor: default; }
-[data-funnel-carousel-prev] img { transform: rotate(180deg); }
+[data-funnel-carousel-prev] svg { transform: rotate(180deg); }
 [data-funnel-carousel-dots] > * { cursor: pointer; transition: background-color .2s; }
 
 /* Sticky offer bar: off screen until the script adds mtf-is-visible */

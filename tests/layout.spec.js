@@ -13,7 +13,7 @@ test('has the 13 sections in order', async ({ page }) => {
 test('sample content is tagged', async ({ page }) => {
   await page.goto('/index.html');
   expect(await page.locator('[data-sample]').count()).toBeGreaterThanOrEqual(20);
-  const untagged = await page.$$eval('.mtf-testimonial-card', els => els.filter(e => !e.closest('[data-sample]')).length);
+  const untagged = await page.$$eval('.mtf-testimonial-card', els => els.filter(e => !e.closest('[data-sample]') && !e.closest('[aria-hidden="true"]')).length);
   expect(untagged).toBe(0);
 });
 

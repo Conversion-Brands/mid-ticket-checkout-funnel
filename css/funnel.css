@@ -652,14 +652,8 @@ button { cursor: pointer; }
 .mtf-text-legal.mtf-is-inverse-tertiary, .mtf-text-xs.mtf-is-inverse-tertiary { color: var(--mtf-inverse-muted); }
 .mtf-credit { color: var(--mtf-inverse-muted); font-family: var(--mtf-font-body); font-size: 13px; line-height: 20px; }
 .mtf-credit-link { color: var(--mtf-inverse-ink); text-decoration: underline; }
-.mtf-carousel-dot { background-color: var(--mtf-dot); border: 0px; border-radius: 999px; width: 10px; height: 10px; padding: 0px; }
-.mtf-carousel-dot.mtf-is-active { background-color: var(--mtf-accent); }
 @media screen and (max-width: 767px) {
   .mtf-checkout-step { row-gap: 24px; }
-  .mtf-carousel-dot { width: 8px; height: 8px; }
-}
-@media screen and (max-width: 479px) {
-  .mtf-carousel-dot { width: 6px; height: 6px; }
 }
 .mtf-text-lg.mtf-is-medium.mtf-in-audience { white-space: normal; flex: 1 1 0px; width: auto; min-width: 0px; }
 .mtf-text-lg.mtf-is-medium.mtf-is-inverse.mtf-in-audience { white-space: normal; flex: 1 1 0px; width: auto; min-width: 0px; }
