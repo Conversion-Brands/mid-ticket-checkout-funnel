@@ -92,6 +92,65 @@
     jumpTo(target.getBoundingClientRect().top + window.pageYOffset);
   }, true);
 
+  // shared page state
+  var state = { ended: false };
+  function hide(el) { el.hidden = true; }
+
+  // ---------------------------------------------------------------- countdown and deadline
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  Funnel.countdownParts = function (msLeft) {
+    var s = Math.max(0, Math.floor(msLeft / 1000));
+    return { d: pad(Math.floor(s / 86400)), h: pad(Math.floor(s % 86400 / 3600)), m: pad(Math.floor(s % 3600 / 60)), s: pad(s % 60) };
+  };
+  Funnel.parseDeadline = function (value) {
+    if (value === null || value === undefined || value === '') return null;
+    var ok = typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})$/.test(value);
+    var d = ok ? new Date(value) : null;
+    if (!d || isNaN(d.getTime())) {
+      warn('deadline.endsAt "' + value + '" is not a date with a timezone, for example 2026-12-01T22:00:00Z. The countdown stays hidden and the offer stays open until it is fixed.');
+      return null;
+    }
+    return d;
+  };
+  (function countdown() {
+    var deadline = Funnel.parseDeadline(cfg.deadline.endsAt);
+    var timers = $$('[data-funnel-countdown]');
+    var wraps = $$('[data-funnel-countdown-wrap]');
+    if (!deadline) { wraps.forEach(hide); return; }
+    var timer;
+    function endOffer() {
+      if (state.ended) return;
+      state.ended = true;
+      clearInterval(timer);
+      wraps.forEach(hide);
+      if (cfg.deadline.afterEnd === 'keep') return;
+      $$('[data-funnel-sale]').forEach(hide);
+      var payment = $('[data-funnel-step="payment"]');
+      if (payment && !payment.hidden) return; // a visitor already paying can finish
+      showEnded();
+    }
+    function tick() {
+      var left = deadline.getTime() - Date.now();
+      var p = Funnel.countdownParts(left);
+      var txt = p.d + 'D:' + p.h + 'H:' + p.m + 'M:' + p.s + 'S';
+      timers.forEach(function (el) { el.textContent = txt; });
+      if (left <= 0) endOffer();
+    }
+    tick();
+    if (!state.ended) timer = setInterval(tick, 1000);
+  })();
+  function showEnded() {
+    var details = $('[data-funnel-step="details"]');
+    var payment = $('[data-funnel-step="payment"]');
+    var stepper = $('[data-funnel-stepper]');
+    var panel = $('[data-funnel-ended]');
+    [details, payment, stepper].forEach(function (el) { if (el) el.hidden = true; });
+    if (!panel) return;
+    panel.hidden = false;
+    var link = $('[data-funnel-ended-link]', panel);
+    if (link && cfg.deadline.endedLink) { link.href = cfg.deadline.endedLink; link.hidden = false; }
+  }
+
   // @@MODULES@@
 
   // ---------------------------------------------------------------- template placeholders banner
