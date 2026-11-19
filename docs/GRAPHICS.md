@@ -8,19 +8,21 @@
 |---|---|---|---|
 | **Online course** | course portal on three devices | `course-portal-laptop.webp` (828x500), `course-portal-tablet.webp` (404x310), `course-portal-phone.webp` (168x350) | "What's included", first card (the three device images) |
 | | course portal, all devices together | `course-portal-devices.webp` (992x462) | the checkout's "everything you get" image, and the offer section |
-| | course modules card | `course-modules.webp` (611x462) | "How it works" step 2, and welcome step 2 |
+| | course modules card | `course-modules.webp` (611x462) | welcome step 2 |
 | **Group coaching** or **live workshops** | video call grid | `video-call-grid.webp` (1052x652) | "What's included", coaching card |
 | | group coaching call card | `group-coaching-call.webp` (616x460) | welcome step 3 |
-| **1:1 calls** | one-to-one session | `one-on-one-call.webp` (640x414) | "How it works" step 1 |
-| **Private community** | community member chips | `community-members.webp` (658x570) | "How it works" step 3, and welcome step 1 |
+| **1:1 calls** | one-to-one session | `one-on-one-call.webp` (640x414) | not placed in the sample; use it in a "What's included" card when the offer has 1:1 calls |
+| **Private community** | community member chips | `community-members.webp` (658x570) | welcome step 1 |
 | **Support between calls** | support chat | `support-chat.webp` (996x567) | "What's included", community card |
 | **Templates, tools, resources, bonuses** | product box | `bonus-box-1.webp` to `bonus-box-3.webp` (600x800) | the bonus cards |
 
 Rules for using them:
 - **Only show what is really included.** If the offer has no 1:1 calls, the 1:1 graphic goes, and so does any copy about calls.
-- **Every slot takes any graphic.** Images in the fixed-height slots (the step cards and the bonus cards) carry the extra class `mtf-is-graphic`, which fits the whole graphic onto a soft panel in your accent colour instead of cropping it. Keep that class when you swap the file.
+- **Every slot takes any graphic.** Images in the fixed-height slots (the welcome step cards and the bonus cards) carry the extra class `mtf-is-graphic`, which fits the whole graphic onto a soft panel in your accent colour instead of cropping it. Keep that class when you swap the file.
 - **More deliverables than cards?** In "What's included", copy one feature card (from `<div class="mtf-card mtf-is-feature` to its closing tag) and alternate the `mtf-is-media-end` class so the images switch sides.
 - **No graphic for a deliverable?** Done-for-you services, for example, have none. Use a real screenshot or photo from the owner, or leave the card without an image (delete the `<img>`).
+
+The three "How it works" step cards on the sales page are not deliverables, so they have plain image placeholders (`assets/placeholders/step-card-1..3.svg`, 640x402). Use a photo, screenshot or simple illustration of each step, or delete the `<img>`.
 
 ## Tailoring them to your brand
 

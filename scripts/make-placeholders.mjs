@@ -33,6 +33,7 @@ const files = {
   'photo-1.svg': card(400, 520, 'Your photo', '400x520', { r: 0 }),
   'photo-2.svg': card(400, 520, 'Your photo', '400x520', { r: 0 }),
 };
+for (let i = 1; i <= 3; i++) files[`step-card-${i}.svg`] = card(640, 402, `Step ${i} image`, '640x402, your own photo, screenshot or illustration');
 // three overlapping initials, for the "join N students" rows
 function avatars(w, h) {
   const d = h, cols = ['#d9d3bf', '#c9c2aa', '#e3ddcb'], letters = ['A', 'B', 'C'];

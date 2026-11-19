@@ -180,6 +180,7 @@ Never use a font the owner has no web licence for, and never put licensed font f
 |---|---|---|
 | `logo.svg`, `logo-inverse.svg` | 248x100, 448x182 | logo on light and dark backgrounds |
 | `video-poster.svg` | 1280x720 | the image shown before the video plays |
+| `step-card-1..3.svg` | 640x402 | the three "How it works" step images on the sales page |
 | `sticker.svg` | 356x368 | the sale sticker in the offer section |
 | `photo-1.svg`, `photo-2.svg` | 400x520 | founder photos (the polaroid frame is added by the page) |
 | `avatars.svg`, `avatars-md.svg` | 106x42, 250x98 | the small row of faces next to "Join N students" (real students only, with permission) |
