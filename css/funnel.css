@@ -626,6 +626,8 @@ button { cursor: pointer; }
 .mtf-icon.mtf-is-28 { width: 28px; height: 28px; }
 .mtf-icon.mtf-is-14 { width: 14px; height: 14px; }
 .mtf-span-italic.mtf-is-plain { text-decoration-line: none; }
+.mtf-emoji { font-family: var(--mtf-font-emoji); font-style: normal; letter-spacing: 0px; margin-right: 3px; }
+.mtf-announcement.mtf-is-full { max-width: none; margin-left: 0px; margin-right: 0px; }
 .mtf-span-color.mtf-is-on-dark { color: var(--mtf-accent-on-dark); }
 .mtf-step-graphic.mtf-is-graphic { object-fit: contain; background-color: var(--mtf-accent-soft); border-radius: 12px; padding: 14px; }
 .mtf-card-media.mtf-is-graphic { object-fit: contain; background-color: var(--mtf-accent-soft); border-radius: 12px; padding: 12px; }

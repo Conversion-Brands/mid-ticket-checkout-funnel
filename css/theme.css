@@ -41,6 +41,7 @@
   --mtf-font-display: 'Very Vogue Text', 'Nicky Laatz Very Vogue Text', 'Instrument Serif', Georgia, serif;
   --mtf-font-hand: 'Caveat', 'Comic Sans MS', cursive;
   --mtf-font-signature: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
+  --mtf-font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; /* real emoji, e.g. the gift in the top bar */
 
   --mtf-radius-sm: 8px;
   --mtf-radius-md: 12px;
