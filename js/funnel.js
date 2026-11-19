@@ -328,11 +328,159 @@
   }
 
   // ---------------------------------------------------------------- checkout step 2: payment
-  var openCheckout = function () { // replaced by the providers below
-    var missing = $('[data-funnel-checkout-missing]');
-    if (missing) missing.hidden = false;
+  var payBox = $('[data-funnel-pay]');
+  var missingPanel = $('[data-funnel-checkout-missing]');
+  function absolute(url) { try { return new URL(url, location.href).href; } catch (e) { return url; } }
+  function showMissing(why) { if (missingPanel) missingPanel.hidden = false; warn(why); }
+  function themeColour(token) { // a theme token as rgb(), for checkout providers that take plain colours
+    var probe = document.createElement('i');
+    probe.style.color = 'var(' + token + ')';
+    probe.style.display = 'none';
+    document.body.appendChild(probe);
+    var c = getComputedStyle(probe).color;
+    probe.parentNode.removeChild(probe);
+    return c;
+  }
+
+  // Whop Elements: the plan ID is all it needs (no API key for a public plan)
+  var WHOP_SRC = 'https://cdn.whop.com/elements/amber/elements.js';
+  var whop = { app: null, checkout: null, el: null, script: null };
+  function whopAppearance() {
+    var accent = themeColour('--mtf-accent'), onAccent = themeColour('--mtf-accent-ink'), line = themeColour('--mtf-line'), surface = themeColour('--mtf-surface');
+    return {
+      theme: { appearance: 'light', accentColor: cfg.checkout.whopAccent || 'gray', grayColor: 'sand' },
+      variables: { '--radius': '8px' },
+      classes: {
+        'whop-Checkout': { backgroundColor: 'transparent' },
+        'whop-CheckoutCollection': { backgroundColor: 'transparent', paddingLeft: '0px', paddingRight: '0px' },
+        'whop-CheckoutDetails': { backgroundColor: 'transparent', paddingLeft: '0px', paddingRight: '0px' },
+        'whop-CheckoutPayButton': { backgroundColor: accent, color: onAccent, borderRadius: '999px', minHeight: '56px', fontSize: '18px', fontWeight: '500' },
+        'whop-EmailInput': { backgroundColor: surface, borderColor: line, minHeight: '48px', fontSize: '16px' },
+        'whop-CardFieldInput': { backgroundColor: surface, borderColor: line },
+        'whop-AddressGroup': { backgroundColor: surface, borderColor: line },
+        'whop-PaymentMethods': { backgroundColor: surface, borderColor: line, borderRadius: '12px' },
+        'whop-PaymentMethodRadioSelected': { borderColor: accent, backgroundColor: accent }
+      }
+    };
+  }
+  function unmountWhop() {
+    if (whop.el && whop.el.destroy) whop.el.destroy();
+    if (whop.checkout && whop.checkout.destroy) whop.checkout.destroy();
+    whop.el = whop.checkout = null;
+    if (payBox) payBox.innerHTML = '';
+  }
+  function mountWhop(lead) {
+    if (!cfg.checkout.whopPlan) { showMissing('checkout.provider is "whop" but checkout.whopPlan is empty. Add your Whop plan ID in funnel.config.js.'); return; }
+    if (!window.WhopElements) {
+      if (!whop.script) {
+        whop.script = document.createElement('script');
+        whop.script.async = true;
+        whop.script.src = WHOP_SRC;
+        whop.script.setAttribute('data-whop-elements', '');
+        whop.script.onerror = function () { if (payBox) payBox.textContent = 'The checkout could not load. Please refresh the page and try again.'; };
+        document.head.appendChild(whop.script);
+      }
+      whop.script.addEventListener('load', function () { mountWhop(lead); }, { once: true });
+      return;
+    }
+    unmountWhop();
+    if (!whop.app) whop.app = window.WhopElements({ appearance: whopAppearance() });
+    var success = absolute(cfg.checkout.successUrl);
+    var opts = { plan: cfg.checkout.whopPlan, returnUrl: success, onComplete: function () { location.assign(success); } };
+    var attribution = { utmSource: utm.utm_source, utmMedium: utm.utm_medium, utmCampaign: utm.utm_campaign, utmTerm: utm.utm_term, utmContent: utm.utm_content };
+    Object.keys(attribution).forEach(function (k) { if (!attribution[k]) delete attribution[k]; });
+    if (Object.keys(attribution).length) opts.attribution = attribution;
+    whop.checkout = whop.app.checkout.create(opts);
+    var props = { buyerEmail: lead.email, defaultValues: { billingDetails: { name: lead.name } } };
+    if (lead.phone) props.defaultValues.phone = lead.phone;
+    whop.el = whop.checkout.create('checkout', props);
+    whop.el.mount(payBox);
+  }
+
+  // Any embed: the owner's snippet, with {email} {name} {first_name} {phone} filled in for each place they appear:
+  // URL-encoded in attributes, as plain text in text, JavaScript-escaped inside scripts.
+  var embedMounted = false;
+  function hasContent(frag) {
+    return Array.prototype.some.call(frag.childNodes, function (n) { return n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim()); });
+  }
+  function embedSource() {
+    var t = $('template[data-funnel-checkout-embed]');
+    if (t && t.content && hasContent(t.content)) return t.innerHTML;
+    return cfg.checkout.embedHtml || '';
+  }
+  function jsEscape(lead) {
+    var out = {};
+    Object.keys(lead).forEach(function (k) { out[k] = JSON.stringify(String(lead[k] == null ? '' : lead[k])).slice(1, -1).replace(/<\//g, '<\\/'); });
+    return out;
+  }
+  function fillNode(node, lead) {
+    if (node.nodeType === 1) {
+      Array.prototype.forEach.call(node.attributes, function (a) { if (/\{(email|name|first_name|phone)\}/.test(a.value)) a.value = Funnel.fillTokens(a.value, lead, true); });
+      if (node.tagName === 'SCRIPT') { node.textContent = Funnel.fillTokens(node.textContent, jsEscape(lead), false); return; }
+    } else if (node.nodeType === 3) {
+      node.nodeValue = Funnel.fillTokens(node.nodeValue, lead, false);
+      return;
+    }
+    Array.prototype.forEach.call(node.childNodes, function (c) { fillNode(c, lead); });
+  }
+  function mountEmbed(lead) {
+    if (embedMounted) return;
+    var src = embedSource();
+    if (!src.trim()) { showMissing('checkout.provider is "embed" but there is no embed code. Paste it into <template data-funnel-checkout-embed> in index.html, or into checkout.embedHtml.'); return; }
+    var tpl = document.createElement('template');
+    tpl.innerHTML = src;
+    var frag = tpl.content;
+    Array.prototype.forEach.call(frag.childNodes, function (c) { fillNode(c, lead); });
+    Array.prototype.forEach.call(frag.querySelectorAll('script'), function (old) {
+      var s = document.createElement('script');
+      Array.prototype.forEach.call(old.attributes, function (a) { s.setAttribute(a.name, a.value); });
+      s.textContent = old.textContent;
+      old.parentNode.replaceChild(s, old); // a new script element runs; one set through innerHTML does not
+    });
+    payBox.appendChild(frag);
+    embedMounted = true;
+  }
+
+  var openCheckout = function (lead) {
+    if (missingPanel) missingPanel.hidden = true;
+    var provider = cfg.checkout.provider;
+    track('checkout_open', { provider: provider });
+    if (provider === 'whop') return mountWhop(lead);
+    if (provider === 'embed') return mountEmbed(lead);
+    if (provider === 'link') {
+      if (!cfg.checkout.link) return showMissing('checkout.provider is "link" but checkout.link is empty.');
+      track('checkout_redirect', { url: cfg.checkout.link });
+      location.assign(Funnel.fillTokens(cfg.checkout.link, lead, true));
+      return;
+    }
+    showMissing('no checkout is set up yet. Set checkout.provider in funnel.config.js to "whop", "embed" or "link" (see docs/CHECKOUTS.md).');
   };
+
+  // Back from a payment that did not go through: the welcome page sends ?payment=failed|canceled here
+  Funnel.paymentStatus = function (search) {
+    var m = /[?&]payment=(failed|canceled|cancelled|error)(&|$)/.exec(search || '');
+    if (!m) return null;
+    return m[1] === 'failed' || m[1] === 'error' ? 'failed' : 'canceled';
+  };
+  var notice = null;
+  (function paymentNotice() {
+    var status = Funnel.paymentStatus(location.search);
+    var col = $('[data-funnel-stepper]') || detailsStep;
+    if (!status || !col) return;
+    notice = document.createElement('div');
+    notice.className = 'mtf-pay-notice';
+    notice.setAttribute('role', 'alert');
+    notice.textContent = status === 'failed'
+      ? 'Your payment didn’t go through. Please check your details and try again below.'
+      : 'Your payment was cancelled. You can try again below whenever you’re ready.';
+    col.insertAdjacentElement(col === detailsStep ? 'beforebegin' : 'afterend', notice);
+    var toNotice = function () { if (notice && notice.parentNode) jumpTo(notice.getBoundingClientRect().top + window.pageYOffset - 140); };
+    var settle = function () { toNotice(); setTimeout(toNotice, 700); };
+    if (document.readyState === 'complete') setTimeout(settle, 50); else window.addEventListener('load', function () { setTimeout(settle, 50); });
+  })();
+
   function openPayment(lead) {
+    if (notice && notice.parentNode) { notice.parentNode.removeChild(notice); notice = null; }
     store('sessionStorage', 'mtf_first_name', lead.first_name); // the welcome page greets the buyer by first name
     var summary = $('[data-funnel-summary]');
     if (summary) summary.textContent = lead.email;
@@ -345,6 +493,7 @@
     onActivate(btn, function (e) {
       e.preventDefault();
       busy = false;
+      if (cfg.checkout.provider === 'whop') unmountWhop(); // remounted with the edited details
       if (paymentStep) paymentStep.hidden = true;
       setStep(1);
       if (state.ended && cfg.deadline.afterEnd !== 'keep') { showEnded(); return; }
