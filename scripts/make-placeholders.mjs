@@ -44,8 +44,9 @@ function avatars(w, h) {
   });
   return out + '</svg>\n';
 }
-files['avatars.svg'] = avatars(106, 42);
-files['avatars-md.svg'] = avatars(250, 98);
+// one face: a neutral silhouette to swap for a real student's photo (with their permission)
+files['avatar.svg'] = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect width="96" height="96" fill="#e3ddcb"/><circle cx="48" cy="38" r="17" fill="#c9c2aa"/><path d="M14 92c4-20 18-30 34-30s30 10 34 30z" fill="#c9c2aa"/></svg>
+`;
 for (const [f, svg] of Object.entries(files)) fs.writeFileSync(path.join(P, f), svg);
 
 // translucent paper tape with torn ends

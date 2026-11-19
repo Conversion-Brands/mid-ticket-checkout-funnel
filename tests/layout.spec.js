@@ -54,3 +54,10 @@ test('the original design fonts come first, the free fonts are the fallback', as
   expect(stacks.declared).toContain('Geist');
   expect(stacks.declared).toContain('Instrument Serif');
 });
+
+test('avatar stacks are separate images, so each face can be replaced', async ({ page }) => {
+  await page.goto('/index.html');
+  const stacks = await page.$$eval('.mtf-social-proof-avatars', els => els.map(e => ({ tag: e.tagName, faces: e.querySelectorAll('img.mtf-avatar').length, tagged: !!e.closest('[data-sample]') })));
+  expect(stacks.length).toBe(3);
+  for (const s of stacks) { expect(s.tag).toBe('DIV'); expect(s.faces).toBe(3); expect(s.tagged).toBe(true); }
+});

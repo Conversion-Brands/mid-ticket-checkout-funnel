@@ -185,7 +185,7 @@ Never use a font the owner has no web licence for, and never put licensed font f
 | `step-card-1..3.svg` | 640x402 | the three "How it works" step images on the sales page |
 | `sticker.svg` | 356x368 | the sale sticker in the offer section |
 | `photo-1.svg`, `photo-2.svg` | 400x520 | founder photos (the polaroid frame is added by the page) |
-| `avatars.svg`, `avatars-md.svg` | 106x42, 250x98 | the small row of faces next to "Join N students" (real students only, with permission) |
+| `avatar.svg` | 96x96 | each face in the small avatar stacks next to "Join N students" (three separate images per stack). Use real students' photos, only with their permission, or delete the stack with its line |
 
 Ask the owner for their files, or make the graphics at these sizes. Only use screenshots and photos the owner owns or may use. Save new files in `assets/` and point the `<img src>` at them. Keep `width`/`height` as they are.
 
