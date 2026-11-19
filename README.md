@@ -64,6 +64,18 @@ A cloneable Webflow version is on its way. This page will link to it.
 | `docs/` | lead destinations, checkout providers, deploying and tracking |
 | `tests/` | the maintainer's automated tests (you don't need them) |
 
+## Disclaimer
+
+This template is free and provided as is, without any warranty. The Conversion Brands and its founder are not responsible for how you use it, for the pages you publish with it, or for any results, losses or claims that come from them.
+
+When you use it, you are responsible for:
+- your offer, copy, claims, prices, testimonials and results;
+- your legal texts: privacy policy, terms, refund policy, cookie consent, and the earnings and platform disclaimers your ads or platforms require (Meta/Facebook, for example);
+- following the laws and rules that apply to you: consumer, advertising and data-protection law, and your payment provider's and ad platforms' policies;
+- your checkout, lead and tracking setup.
+
+The sample content and graphics are examples only, and nothing in this repository is legal, financial or tax advice. Get professional advice where you need it.
+
 ## Credits and licence
 
 Template by **The Conversion Brands**. Want it built and launched for you? [theconversionbrands.com](https://theconversionbrands.com/)
