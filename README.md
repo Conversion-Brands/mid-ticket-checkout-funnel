@@ -4,7 +4,7 @@ A free, ready-to-sell template for a mid-ticket offer: a long-form sales page wi
 
 ![The sales page](docs/preview.png)
 
-**Live demo:** https://conversion-brands.github.io/mid-ticket-checkout-funnel/ (welcome page: `/welcome.html`)
+**Access:** this repository is invite only. Sign in to GitHub with the account that received the invite to clone it, download the ZIP or import it. To preview it, serve the folder locally (see [SETUP.md](SETUP.md)).
 
 ## What it does
 
@@ -26,8 +26,8 @@ A free, ready-to-sell template for a mid-ticket offer: a long-form sales page wi
 
 Open **[PROMPT.md](PROMPT.md)**, copy the prompt (the copy button sits at the top right of the box) and paste it into an AI coding tool:
 - Claude Code, Cursor, Codex or Windsurf;
-- **Bolt:** open https://bolt.new/github.com/Conversion-Brands/mid-ticket-checkout-funnel, or use "Import from GitHub", then paste the prompt;
-- **Replit:** Create > Import from GitHub > paste the repository URL, then paste the prompt.
+- **Bolt:** use "Import from GitHub" with the GitHub account that received the invite, then paste the prompt;
+- **Replit:** Create > Import from GitHub (signed in with the invited account) > paste the repository URL, then paste the prompt.
 
 Lovable is not supported yet, because it cannot import an existing repository.
 
