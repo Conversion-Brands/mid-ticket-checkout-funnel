@@ -2,8 +2,12 @@
   THEME: every colour, font and shadow on both pages comes from these tokens.
   To restyle the funnel, change the values in the first block ("Your brand") and leave the rest:
   the derived tokens below are mixed from them automatically.
-  Fonts: any Google Font (Open Font License) works. Download it into assets/fonts/ and add an
-  @font-face rule to css/fonts.css (scripts/fetch-fonts.mjs does both), then change the --mtf-font-* lines.
+
+  Fonts: the original design uses PP Neue Montreal (Pangram Pangram) for text and Very Vogue Text
+  (Nicky Laatz) for headings. Both are paid fonts, so they are NOT included: buy a web licence and
+  add the files as explained in css/fonts.css. Until you do, the free look-alikes that follow them in
+  each list are used: Geist and Instrument Serif (Open Font License, included in assets/fonts/).
+  To use other fonts, change the --mtf-font-* lines (see SETUP.md, "Theme").
   Default theme: "Paper" (warm paper, ink-blue accent).
 */
 :root {
@@ -33,8 +37,8 @@
   --mtf-gold: #886e1e;            /* "intermediate" badge */
   --mtf-gold-soft: #f0eada;
 
-  --mtf-font-body: 'Geist', Arial, sans-serif;
-  --mtf-font-display: 'Instrument Serif', Georgia, serif;
+  --mtf-font-body: 'PP Neue Montreal', 'Geist', Arial, sans-serif;
+  --mtf-font-display: 'Very Vogue Text', 'Nicky Laatz Very Vogue Text', 'Instrument Serif', Georgia, serif;
   --mtf-font-hand: 'Caveat', 'Comic Sans MS', cursive;
   --mtf-font-signature: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
 
@@ -46,6 +50,7 @@
   /* ---- Derived (no need to edit) ---- */
   --mtf-highlight: var(--mtf-accent);
   --mtf-accent-soft: color-mix(in srgb, var(--mtf-accent) 10%, var(--mtf-surface));
+  --mtf-accent-on-dark: color-mix(in srgb, var(--mtf-accent) 50%, var(--mtf-surface)); /* accent words on the black countdown pill */
   --mtf-accent-a04: color-mix(in srgb, var(--mtf-accent) 4%, transparent);
   --mtf-accent-a10: color-mix(in srgb, var(--mtf-accent) 10%, transparent);
   --mtf-accent-a15: color-mix(in srgb, var(--mtf-accent) 15%, transparent);

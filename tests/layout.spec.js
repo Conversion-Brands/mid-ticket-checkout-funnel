@@ -41,10 +41,16 @@ test('no console errors on load', async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test('fonts load', async ({ page }) => {
+test('the original design fonts come first, the free fonts are the fallback', async ({ page }) => {
   await page.goto('/index.html');
   await page.evaluate(() => document.fonts.ready);
-  const loaded = await page.evaluate(() => [...document.fonts].filter(f => f.status === 'loaded').map(f => f.family.replace(/["']/g, '')));
-  expect(loaded).toContain('Geist');
-  expect(loaded).toContain('Instrument Serif');
+  const stacks = await page.evaluate(() => ({
+    body: getComputedStyle(document.body).fontFamily,
+    display: getComputedStyle(document.querySelector('.mtf-heading-h1')).fontFamily,
+    declared: [...document.fonts].map(f => f.family.replace(/["']/g, '')),
+  }));
+  expect(stacks.body).toMatch(/^"?PP Neue Montreal"?, "?Geist"?/);
+  expect(stacks.display).toMatch(/^"?Very Vogue Text"?, "?Nicky Laatz Very Vogue Text"?, "?Instrument Serif"?/);
+  expect(stacks.declared).toContain('Geist');
+  expect(stacks.declared).toContain('Instrument Serif');
 });

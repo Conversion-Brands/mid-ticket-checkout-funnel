@@ -4,3 +4,18 @@
 @font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/instrumentserif-normal-400.woff2') format('woff2'); }
 @font-face { font-family: 'Caveat'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('../assets/fonts/caveat-normal.woff2') format('woff2'); }
 @font-face { font-family: 'Mrs Saint Delafield'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/mrssaintdelafield-normal-400.woff2') format('woff2'); }
+
+/*
+  Licensed fonts of the original design (not included, they are paid fonts):
+  - PP Neue Montreal by Pangram Pangram (pangrampangram.com): text, buttons, labels. Weights 400 (Book), 500 (Medium), 700 (Bold).
+  - Very Vogue Text by Nicky Laatz (nickylaatz.com): headings. Weight 400, upright and italic.
+  With a web licence for your domain, put the .woff2 files in assets/fonts/licensed/ with the names below and remove the
+  comment marks around these rules. The page then uses them for every visitor. If a font is only installed on your own
+  computer, you will see it there, but your visitors will not. Never publish these files in a public repository.
+
+@font-face { font-family: 'PP Neue Montreal'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/licensed/ppneuemontreal-book.woff2') format('woff2'); }
+@font-face { font-family: 'PP Neue Montreal'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/licensed/ppneuemontreal-medium.woff2') format('woff2'); }
+@font-face { font-family: 'PP Neue Montreal'; font-style: normal; font-weight: 700; font-display: swap; src: url('../assets/fonts/licensed/ppneuemontreal-bold.woff2') format('woff2'); }
+@font-face { font-family: 'Very Vogue Text'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/licensed/veryvogue-text.woff2') format('woff2'); }
+@font-face { font-family: 'Very Vogue Text'; font-style: italic; font-weight: 400; font-display: swap; src: url('../assets/fonts/licensed/veryvogue-text-italic.woff2') format('woff2'); }
+*/

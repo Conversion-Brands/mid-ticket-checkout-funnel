@@ -42,4 +42,7 @@ for (const f of FAMILIES) {
   fs.writeFileSync(path.join(FONTS, `OFL-${f.ofl}.txt`), await ofl.text());
   console.log(f.name, files.join(', '));
 }
-fs.writeFileSync(path.join(ROOT, 'css/fonts.css'), out);
+// keep the licensed-fonts block (and anything after it) that css/fonts.css already has
+const existing = fs.existsSync(path.join(ROOT, 'css/fonts.css')) ? fs.readFileSync(path.join(ROOT, 'css/fonts.css'), 'utf8') : '';
+const keep = existing.indexOf('\n/*\n  Licensed fonts');
+fs.writeFileSync(path.join(ROOT, 'css/fonts.css'), out + (keep === -1 ? '' : existing.slice(keep)));
