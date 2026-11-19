@@ -15,6 +15,22 @@
     });
   }
 
+  // ---- template placeholders badge (same as on the sales page; off with sampleWarnings: false)
+  window.Funnel = window.Funnel || {};
+  window.Funnel.sampleCount = function () { return document.querySelectorAll('[data-sample]').length; };
+  (function sampleBanner() {
+    var cfg = window.FUNNEL_CONFIG || {};
+    var n = document.querySelectorAll('[data-sample]').length;
+    if (cfg.sampleWarnings === false || !n) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.id = 'mtf-sample-banner';
+    b.textContent = n + (n === 1 ? ' template placeholder left' : ' template placeholders left');
+    b.title = 'Click to outline the example content you still need to replace (see SETUP.md).';
+    b.addEventListener('click', function () { document.documentElement.classList.toggle('mtf-show-samples'); });
+    document.body.appendChild(b);
+  })();
+
   // ---- confetti: two side bursts, then one from the middle, in the theme colours; skipped for reduced motion
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   function toHex(css) { // rgb(...) or color(srgb ...) as #rrggbb, which the confetti library expects

@@ -626,6 +626,10 @@ button { cursor: pointer; }
 .mtf-icon.mtf-is-28 { width: 28px; height: 28px; }
 .mtf-icon.mtf-is-14 { width: 14px; height: 14px; }
 .mtf-span-italic.mtf-is-plain { text-decoration-line: none; }
+.mtf-span-color.mtf-is-on-dark { color: var(--mtf-accent-on-dark); }
+.mtf-step-graphic.mtf-is-graphic { object-fit: contain; background-color: var(--mtf-accent-soft); border-radius: 12px; padding: 14px; }
+.mtf-card-media.mtf-is-graphic { object-fit: contain; background-color: var(--mtf-accent-soft); border-radius: 12px; padding: 12px; }
+.mtf-mockup.mtf-is-graphic { object-fit: contain; }
 .mtf-checkout-step { flex-direction: column; align-items: flex-start; row-gap: 32px; width: 100%; display: flex; }
 .mtf-field-error { color: var(--mtf-danger); text-align: left; margin-top: -4px; font-family: var(--mtf-font-body); font-size: 14px; line-height: 20px; }
 .mtf-consent { color: var(--mtf-ink-2); text-align: left; column-gap: 10px; align-items: flex-start; width: 100%; font-family: var(--mtf-font-body); font-size: 14px; line-height: 20px; display: flex; }

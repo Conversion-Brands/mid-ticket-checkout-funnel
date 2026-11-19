@@ -89,6 +89,7 @@ test('theme contrast', async ({ page }) => {
       onAccent: contrast('--mtf-accent-ink', '--mtf-accent'),
       accent: contrast('--mtf-accent', '--mtf-bg'),
       inverse: contrast('--mtf-inverse-muted', '--mtf-inverse-bg'),
+      onDark: contrast('--mtf-accent-on-dark', '--mtf-ink'),
     };
   });
   expect(ratio.ink).toBeGreaterThanOrEqual(4.5);
@@ -96,4 +97,5 @@ test('theme contrast', async ({ page }) => {
   expect(ratio.onAccent).toBeGreaterThanOrEqual(4.5);
   expect(ratio.accent).toBeGreaterThanOrEqual(3);
   expect(ratio.inverse).toBeGreaterThanOrEqual(4.5);
+  expect(ratio.onDark).toBeGreaterThanOrEqual(4.5);
 });

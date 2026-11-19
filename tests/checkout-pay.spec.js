@@ -186,3 +186,23 @@ test('paymentStatus', async ({ page }) => {
   await page.goto('/index.html');
   expect(await page.evaluate(() => [Funnel.paymentStatus('?payment=error'), Funnel.paymentStatus('?x=1'), Funnel.paymentStatus('?a=1&payment=cancelled'), Funnel.paymentStatus('?payment=failedx')])).toEqual(['failed', null, 'canceled', null]);
 });
+
+test('attributes that are not URLs get the plain value', async ({ page }) => {
+  await withConfig(page, { checkout: { provider: 'embed' } });
+  await withEmbed(page, '<div id="sb" customer-email="{email}" data-name="{name}" data-url="https://pay.test/x?e={email}"></div>');
+  await page.goto('/index.html');
+  await toStep2(page);
+  const el = page.locator('#sb');
+  await expect(el).toHaveAttribute('customer-email', 'a+b@x.io');
+  await expect(el).toHaveAttribute('data-name', 'Zoë O\'Brien');
+  await expect(el).toHaveAttribute('data-url', 'https://pay.test/x?e=a%2Bb%40x.io');
+});
+
+test('{last_name} is everything after the first name', async ({ page }) => {
+  await withConfig(page, { checkout: { provider: 'embed', embedHtml: '<p id="ln">{first_name}|{last_name}</p>' } });
+  await page.goto('/index.html');
+  await ready(page);
+  await fillLead(page, { name: 'Zoë van der Berg' });
+  await page.locator('[data-funnel-continue]').click();
+  await expect(page.locator('#ln')).toHaveText('Zoë|van der Berg');
+});

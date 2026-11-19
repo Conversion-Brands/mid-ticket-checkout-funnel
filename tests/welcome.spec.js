@@ -96,3 +96,21 @@ test('welcome: no console errors', async ({ page }) => {
   await page.waitForLoadState('networkidle');
   expect(errors).toEqual([]);
 });
+
+test('the welcome page shows the placeholder badge too', async ({ page }) => {
+  await page.goto('/welcome.html');
+  const n = await page.locator('[data-sample]').count();
+  expect(n).toBeGreaterThan(0);
+  await expect(page.locator('#mtf-sample-banner')).toHaveText(`${n} template placeholders left`);
+});
+
+test('sampleWarnings false hides the welcome badge', async ({ page }) => {
+  await page.route('**/funnel.config.js', r => r.fulfill({ contentType: 'application/javascript', body: 'window.FUNNEL_CONFIG = { sampleWarnings: false };' }));
+  await page.goto('/welcome.html');
+  await expect(page.locator('#mtf-sample-banner')).toHaveCount(0);
+});
+
+test('Funnel.sampleCount works on the welcome page', async ({ page }) => {
+  await page.goto('/welcome.html');
+  expect(await page.evaluate(() => window.Funnel.sampleCount())).toBe(await page.locator('[data-sample]').count());
+});

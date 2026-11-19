@@ -24,26 +24,15 @@ ${hint ? `<text x="50%" y="${h / 2 + fs1 * 0.75}" text-anchor="middle" font-fami
 `;
 }
 
-const studio = (w, h) => `${w}x${h}, make yours in the studio`;
+const studio = (w, h) => `${w}x${h}, see docs/GRAPHICS.md`;
 const files = {
   'logo.svg': card(248, 100, 'Your logo', '', { r: 12 }),
   'logo-inverse.svg': card(448, 182, 'Your logo', '', { r: 16, fill: '#262626', text: '#bdbdbd' }),
   'video-poster.svg': card(1280, 720, 'Your video', 'paste your video embed into the hero (see SETUP.md)', { r: 0 }),
-  'bundle.svg': card(992, 594, 'Bundle shot', studio(992, 594)),
-  'laptop.svg': card(828, 500, 'Laptop mockup', studio(828, 500)),
-  'tablet.svg': card(404, 310, 'Tablet mockup', studio(404, 310)),
-  'phone.svg': card(168, 348, 'Phone', '168x348', { r: 18 }),
-  'feature-wide.svg': card(1052, 666, 'Feature image', '1052x666, a screenshot of your calls or product'),
-  'feature.svg': card(996, 544, 'Feature image', '996x544, a screenshot of your community or product'),
   'sticker.svg': card(356, 368, 'Sale sticker', studio(356, 368), { r: 178 }),
   'photo-1.svg': card(400, 520, 'Your photo', '400x520', { r: 0 }),
   'photo-2.svg': card(400, 520, 'Your photo', '400x520', { r: 0 }),
 };
-for (let i = 1; i <= 3; i++) {
-  files[`step-card-${i}.svg`] = card(640, 402, `Step ${i} graphic`, studio(640, 402));
-  files[`box-${i}.svg`] = card(940, 724, `Bonus ${i} box`, studio(940, 724));
-  files[`welcome-step-${i}.svg`] = card(640, 402, `Next step ${i} graphic`, studio(640, 402));
-}
 // three overlapping initials, for the "join N students" rows
 function avatars(w, h) {
   const d = h, cols = ['#d9d3bf', '#c9c2aa', '#e3ddcb'], letters = ['A', 'B', 'C'];

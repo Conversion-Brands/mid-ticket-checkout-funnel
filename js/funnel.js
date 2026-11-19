@@ -165,7 +165,7 @@
     return 'us';
   };
   Funnel.fillTokens = function (text, lead, encode) {
-    return String(text == null ? '' : text).replace(/\{(email|name|first_name|phone)\}/g, function (m, k) {
+    return String(text == null ? '' : text).replace(/\{(email|name|first_name|last_name|phone)\}/g, function (m, k) {
       var v = lead && lead[k] != null ? String(lead[k]) : '';
       return encode ? encodeURIComponent(v) : v;
     });
@@ -300,7 +300,7 @@
         if (!full) { var dial = (iti.getSelectedCountryData() || {}).dialCode; full = (dial ? '+' + dial : '') + phone.value.replace(/\D/g, ''); }
       } else full = phone.value.trim();
     }
-    return { name: name, first_name: Funnel.firstName(name), email: email, phone: full, country: country };
+    return { name: name, first_name: Funnel.firstName(name), last_name: name.split(/\s+/).slice(1).join(' '), email: email, phone: full, country: country };
   }
   function submitDetails(e) {
     if (e) { e.preventDefault(); e.stopPropagation(); }
@@ -397,8 +397,8 @@
     whop.el.mount(payBox);
   }
 
-  // Any embed: the owner's snippet, with {email} {name} {first_name} {phone} filled in for each place they appear:
-  // URL-encoded in attributes, as plain text in text, JavaScript-escaped inside scripts.
+  // Any embed: the owner's snippet, with {email} {name} {first_name} {last_name} {phone} filled in for each place they appear:
+  // URL-encoded inside URLs, as plain values in other attributes and text, JavaScript-escaped inside scripts.
   var embedMounted = false;
   function hasContent(frag) {
     return Array.prototype.some.call(frag.childNodes, function (n) { return n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim()); });
@@ -415,7 +415,11 @@
   }
   function fillNode(node, lead) {
     if (node.nodeType === 1) {
-      Array.prototype.forEach.call(node.attributes, function (a) { if (/\{(email|name|first_name|phone)\}/.test(a.value)) a.value = Funnel.fillTokens(a.value, lead, true); });
+      Array.prototype.forEach.call(node.attributes, function (a) {
+        if (!/\{(email|name|first_name|last_name|phone)\}/.test(a.value)) return;
+        var isUrl = /:\/\/|^[\/?#]|^(mailto|tel):/i.test(a.value) || /^(src|href|action|formaction|poster)$/i.test(a.name);
+        a.value = Funnel.fillTokens(a.value, lead, isUrl); // URL-encoded only inside URLs
+      });
       if (node.tagName === 'SCRIPT') { node.textContent = Funnel.fillTokens(node.textContent, jsEscape(lead), false); return; }
     } else if (node.nodeType === 3) {
       node.nodeValue = Funnel.fillTokens(node.nodeValue, lead, false);
