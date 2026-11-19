@@ -14,7 +14,8 @@
     deadline: { endsAt: null, afterEnd: 'close', endedLink: '' },
     leads: { webhooks: [], phone: true, consentCheckbox: false },
     checkout: { provider: 'none', whopPlan: '', whopAccent: 'gray', link: '', embedHtml: '', successUrl: 'welcome.html' },
-    sampleWarnings: true
+    sampleWarnings: true,
+    smoothScroll: true
   };
 
   // ---------------------------------------------------------------- helpers
@@ -34,7 +35,11 @@
     el.addEventListener('click', fn);
     el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(e); } });
   }
-  function jumpTo(y) { window.scrollTo(0, Math.max(0, y)); }
+  function jumpTo(y) { // instant, and in step with the smooth scroll when it runs
+    y = Math.max(0, y);
+    if (window.lenis && window.lenis.scrollTo) window.lenis.scrollTo(y, { immediate: true, force: true });
+    else window.scrollTo(0, y);
+  }
   function track(event, data) {
     window.dataLayer = window.dataLayer || [];
     var entry = { event: event };
@@ -55,6 +60,12 @@
     version: VERSION,
     config: cfg
   };
+
+  // smooth scrolling (Lenis): wheel and trackpad only, touch stays native; off for reduced motion or smoothScroll: false
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (cfg.smoothScroll && window.Lenis && !reduceMotion && !window.lenis) {
+    window.lenis = new window.Lenis({ autoRaf: true, lerp: 0.1, allowNestedScroll: true, stopInertiaOnNavigate: true });
+  }
   if (!configOk) { // a typo in funnel.config.js (or a missing file) must not go unnoticed
     if (window.console) console.error('Mid-ticket Checkout Funnel: funnel.config.js could not be read, so the default settings are used. Look for a typo such as a missing comma, quote or bracket.');
     var cn = document.createElement('div');

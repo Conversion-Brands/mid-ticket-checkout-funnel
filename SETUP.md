@@ -236,7 +236,8 @@ window.FUNNEL_CONFIG = {
   deadline: { endsAt: null, afterEnd: 'close', endedLink: '' },     // endsAt: ISO date with timezone, e.g. '2026-12-01T22:00:00Z'
   leads:    { webhooks: [], phone: true, consentCheckbox: false },
   checkout: { provider: 'none', whopPlan: '', whopAccent: 'gray', link: '', embedHtml: '', successUrl: 'welcome.html' },
-  sampleWarnings: true
+  sampleWarnings: true,
+  smoothScroll: true                 // Lenis smooth scrolling for mouse and trackpad; off for visitors who prefer reduced motion
 };
 ```
 

@@ -5,6 +5,13 @@
 (function () {
   'use strict';
 
+  // ---- smooth scrolling (Lenis), as on the sales page
+  var settings = window.FUNNEL_CONFIG || {};
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (settings.smoothScroll !== false && window.Lenis && !calm && !window.lenis) {
+    window.lenis = new window.Lenis({ autoRaf: true, lerp: 0.1, allowNestedScroll: true, stopInertiaOnNavigate: true });
+  }
+
   // ---- first name from the checkout (sessionStorage mtf_first_name, set when the payment step opened)
   var name = '';
   try { name = (sessionStorage.getItem('mtf_first_name') || '').trim().split(/\s+/)[0].slice(0, 24); } catch (e) { name = ''; }

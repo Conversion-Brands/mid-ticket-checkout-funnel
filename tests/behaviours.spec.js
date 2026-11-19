@@ -134,3 +134,28 @@ test('a loaded video gets its keyboard back', async ({ page }) => {
   await expect(page.locator('#vi')).toHaveValue('a b');
   await expect(page.locator('[data-funnel-video]')).not.toHaveAttribute('role', 'button');
 });
+
+test('smooth scrolling runs with Lenis, as on the Webflow site', async ({ page }) => {
+  await page.goto('/index.html');
+  expect(await page.evaluate(() => !!(window.lenis && document.documentElement.classList.contains('lenis')))).toBe(true);
+  expect(await page.evaluate(() => window.lenis.options.lerp)).toBe(0.1);
+});
+
+test('smooth scrolling also runs on the welcome page', async ({ page }) => {
+  await page.goto('/welcome.html');
+  expect(await page.evaluate(() => !!window.lenis)).toBe(true);
+});
+
+test('smoothScroll false turns it off', async ({ page }) => {
+  await page.route('**/funnel.config.js', r => r.fulfill({ contentType: 'application/javascript', body: 'window.FUNNEL_CONFIG = { smoothScroll: false };' }));
+  await page.goto('/index.html');
+  expect(await page.evaluate(() => !!window.lenis)).toBe(false);
+});
+
+test.describe('reduced motion skips smooth scrolling', () => {
+  test.use({ reducedMotion: 'reduce' });
+  test('no Lenis', async ({ page }) => {
+    await page.goto('/index.html');
+    expect(await page.evaluate(() => !!window.lenis)).toBe(false);
+  });
+});

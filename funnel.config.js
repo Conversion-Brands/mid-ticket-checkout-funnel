@@ -32,5 +32,7 @@ window.FUNNEL_CONFIG = {
     successUrl: 'welcome.html'      // where buyers land after paying (also set this in your checkout provider)
   },
 
-  sampleWarnings: true              // show the "template placeholders left" badge until every data-sample item is replaced
+  sampleWarnings: true,             // show the "template placeholders left" badge until every data-sample item is replaced
+
+  smoothScroll: true                // smooth mouse-wheel and trackpad scrolling (Lenis); touch scrolling stays native
 };
