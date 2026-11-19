@@ -1,0 +1,13 @@
+{
+  "name": "mid-ticket-checkout-funnel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Maintainer tooling for the Mid-ticket Checkout Funnel template. Nothing here is needed to use the template.",
+  "scripts": {
+    "test": "playwright test",
+    "scrub": "../artifacts/mid-ticket-template-reference-2026-11-18/scrub-check.sh ."
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1"
+  }
+}
